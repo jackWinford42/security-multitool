@@ -2,9 +2,8 @@
 
 const db = require("../db");
 const bcrypt = require("bcrypt");
-const { sqlForPartialUpdate } = require("../helpers/sql");
+
 const {
-  NotFoundError,
   BadRequestError,
   UnauthorizedError,
 } = require("../expressError");
@@ -54,7 +53,7 @@ class User {
    * Throws BadRequestError on duplicates.
    **/
   static async register(
-    { username, password, email, profile_pic_url }) {
+    { username, password, email, profile_pic }) {
     const duplicateCheck = await db.query(
           `SELECT username
           FROM users
@@ -73,14 +72,14 @@ class User {
           (username,
             password,
             email,
-            profile_pic_url)
+            profile_pic)
           VALUES ($1, $2, $3, $4)
-          RETURNING username, email, profile_pic_url`,
+          RETURNING username, email, profile_pic`,
         [
           username,
           hashedPassword,
           email,
-          profile_pic_url,
+          profile_pic,
         ],
     );
 

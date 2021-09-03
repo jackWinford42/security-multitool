@@ -1,11 +1,11 @@
 "use strict";
-/** Database setup for jobly. */
+/** Database setup for ramt. */
 const { Client } = require("pg");
 const { getDatabaseUri } = require("./config");
 
 let db;
 
-if (process.env.NODE_ENV === production) {
+if (process.env.NODE_ENV === "production") {
   db = new Client({
     connectionString: getDatabaseUri(),
     ssl: {

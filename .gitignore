@@ -1,2 +1,3 @@
 node_modules/
-security-multitool-frontend/node_modules/
+reactFrontend/node_modules/
+expressBackend/node_modules/

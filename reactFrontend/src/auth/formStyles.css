@@ -1,0 +1,9 @@
+.authButton {
+    width: 50px;
+    margin: 0 auto;
+}
+
+label {
+    font-weight: bold;
+    float: left;
+}
