@@ -50,6 +50,16 @@ class RamtApi {
     let res = await this.request("auth/token", data, "post");
     return res.token;
   }
+
+  static async getCurrUser(username) {
+    let res = await this.request(`users/${username}`);
+    return res.user;
+  }
+
+  static async getEmailRes(email) {
+    let res = await this.request(`email/${email}`);
+    return res;
+  }
 }
 
 // for now, put token ("testuser" / "password" on class)

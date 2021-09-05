@@ -23,10 +23,8 @@ class User {
     const result = await db.query(
           `SELECT username,
             password,
-            first_name AS "firstName",
-            last_name AS "lastName",
             email,
-            is_admin AS "isAdmin"
+            profile_pic
             FROM users
             WHERE username = $1`,
         [username],
@@ -84,6 +82,31 @@ class User {
     );
 
     const user = result.rows[0];
+
+    return user;
+  }
+
+    /** Given a username, return data about user.
+   *
+   * Returns { username, first_name, last_name, is_admin, jobs }
+   *   where jobs is { id, title, company_handle, company_name, state }
+   *
+   * Throws NotFoundError if user not found.
+   **/
+
+  static async get(username) {
+    const userRes = await db.query(
+          `SELECT username,
+                  email,
+                  profile_pic
+            FROM users
+            WHERE username = $1`,
+        [username],
+    );
+
+    const user = userRes.rows[0];
+
+    if (!user) throw new NotFoundError(`No user: ${username}`);
 
     return user;
   }

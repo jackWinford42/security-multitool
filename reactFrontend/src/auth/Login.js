@@ -52,7 +52,7 @@ function LoginForm({ login }) {
               value={formData.password}
               onChange={handleChange}
             />
-            <button class="authButton" type="submit" className="btn btn-lg btn-primary">
+            <button type="submit" className="authButton btn btn-lg btn-primary">
               log in
             </button>
           </form>

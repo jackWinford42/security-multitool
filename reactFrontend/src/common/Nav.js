@@ -7,21 +7,24 @@ import { Navbar, Nav, NavItem, NavLink, } from "reactstrap";
  */
 export default function Navigation({logout}) {
   const user = useSelector(st => st.currUser);
-  
+  console.log(user)
   const loggedIn = () => {
     return (
       <Nav className="navbar-nav mr-auto" navbar>
         <NavItem>
-          <NavLink href="/companies">Companies</NavLink>
+          <NavLink href="/email">Email</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="/jobs">Jobs</NavLink>
+          <NavLink href="/url">Url</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="/home">Home</NavLink>
         </NavItem>
         <NavItem>
           <NavLink href="/profile">Profile</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="/" onClick={logout}>Log out user</NavLink>
+          <NavLink href="/" onClick={logout}>Log out</NavLink>
         </NavItem>
       </Nav>
     )
@@ -42,11 +45,10 @@ export default function Navigation({logout}) {
 
   return (
     <Navbar color="light" light expand="md">
-      <NavLink exact href="/" className="navbar-brand">
+      <NavLink href="/" className="navbar-brand">
         Jobly
       </NavLink>
-      {user ? loggedIn() : unauthed()}
+      {(user.username) ? loggedIn() : unauthed()}
     </Navbar>
   );
 }
-

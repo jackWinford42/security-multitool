@@ -1,11 +1,33 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react";
+import jwt from "jsonwebtoken";
 import Routes from "./Routes";
 import RamtApi from "./Api";
+import { useDispatch } from 'react-redux';
 import './App.css';
 
-function App() {
+export default function App() {
   const [isLoading, setIsLoading] = useState(false);
+  // const [currUser, setCurrUser] = useState(null);
   const [token, setToken] = useState('');
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    async function getUser() {
+      try {
+        let { username } = jwt.decode(token);
+        console.log(username)
+        RamtApi.token = token;
+        const userData = await RamtApi.getCurrUser(username);
+        console.log(userData)
+        dispatch({type: 'BEGIN_AUTH_SESSION', user: userData})
+      } catch (err) {
+        console.error("App getUser: issue loading user", err);
+      }
+    }
+    setIsLoading(true);
+    if (token) getUser();
+    setIsLoading(false);
+  }, [token, dispatch]);
 
   async function signup(formData) {
     try {
@@ -21,7 +43,9 @@ function App() {
 
   async function login(formData) {
     try {
+      console.log(formData)
       const returnedToken = await RamtApi.login(formData)
+      console.log(returnedToken)
       setToken(returnedToken);
       localStorage.setItem("token", returnedToken);
       return {worked: true};
@@ -33,8 +57,9 @@ function App() {
 
   async function logout() {
     setToken(null);
+    dispatch({type: "END_AUTH_SESSION"})
     localStorage.removeItem("token");
-    localStorage.removeItem("appliedIds");
+    console.debug("SUCCESSFULLY LOGGED OUT")
   }
 
   if (isLoading) {
@@ -47,5 +72,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
