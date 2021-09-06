@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import "./App.css";
 import Landing from "./Landing";
 import Nav from "./common/Nav";
@@ -8,18 +8,36 @@ import Login from "./auth/Login";
 import Signup from "./auth/Signup";
 import Email from "./Email";
 
-/** App servers as a router and parent function for nav and page 
+/** Router servers as a router and parent function for nav and page 
  * content on each route.
  */
 export default function Routes({signup, login, logout}) {
   const user = useSelector(st => st.currUser);
+  const dispatch = useDispatch();
   console.log(user)
+
+  // useEffect(function() {
+  //   async function fetchTitle() {
+  //     await dispatch({type: 'FETCH_USER'});
+  //   }
+  //   fetchTitle();
+  // }, [dispatch]);
+
   const privateRoutes = (
     <Switch>
       <Route exact path="/">
         <Landing/>
       </Route>
       <Route path="/email">
+        <Email/>
+      </Route>
+      <Route path="/url">
+        <Email/>
+      </Route>
+      <Route path="/home">
+        <Email/>
+      </Route>
+      <Route path="/profile">
         <Email/>
       </Route>
       <Route>
@@ -48,6 +66,7 @@ export default function Routes({signup, login, logout}) {
     </Switch>
   )
   console.log(!!user.username)
+  console.log((user.username) ? privateRoutes : unAuthedRoutes)
   return (
     <BrowserRouter>
       <Nav logout={logout}/>

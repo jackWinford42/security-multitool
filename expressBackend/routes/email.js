@@ -8,14 +8,17 @@ const axios = require("axios");
 const router = express.Router();
 
 router.get("/:email", async function (req, res, next) {
-    try {
-        const url = `https://emailrep.io/${req.params.email}?summary=true`;
-        //const headers = {Key: }
-        const response = await axios({url});
-        return response;
-    } catch (err) {
-        return next(err);
-    }
+  try {
+    const url = `https://ipqualityscore.com/api/json/email/dynV47ZzUaACROaMoVScQXFpslSorfFv/${req.params.email}`;
+    //const headers = {Key: }
+    console.log("/////////////")
+    const response = await axios({url});
+    console.log(response)
+    console.log("/////////////")
+    return {data: response};
+  } catch (err) {
+    return next(err);
+  }
 })
 
 module.exports = router;

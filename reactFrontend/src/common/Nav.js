@@ -1,6 +1,7 @@
 import React from "react";
 import {useSelector} from "react-redux";
-import { Navbar, Nav, NavItem, NavLink, } from "reactstrap";
+import { NavLink } from "react-router-dom";
+import { Navbar, Nav, NavItem } from "reactstrap";
 
 /** Displays a navbar with variable links depending on whether
  * there is an authenticated user or not.
@@ -12,19 +13,19 @@ export default function Navigation({logout}) {
     return (
       <Nav className="navbar-nav mr-auto" navbar>
         <NavItem>
-          <NavLink href="/email">Email</NavLink>
+          <NavLink to="/email">Email</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="/url">Url</NavLink>
+          <NavLink to="/url">Url</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="/home">Home</NavLink>
+          <NavLink to="/home">Home</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="/profile">Profile</NavLink>
+          <NavLink to="/profile">Profile</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="/" onClick={logout}>Log out</NavLink>
+          <NavLink to="/" onClick={logout}>Log out</NavLink>
         </NavItem>
       </Nav>
     )
@@ -34,10 +35,10 @@ export default function Navigation({logout}) {
     return (
       <Nav className="navbar-nav mr-auto" navbar>
         <NavItem>
-          <NavLink href="/sign-up">sign up</NavLink>
+          <NavLink to="/sign-up">sign up</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="/login">log in</NavLink>
+          <NavLink to="/login">log in</NavLink>
         </NavItem>
       </Nav>
     )
@@ -45,7 +46,7 @@ export default function Navigation({logout}) {
 
   return (
     <Navbar color="light" light expand="md">
-      <NavLink href="/" className="navbar-brand">
+      <NavLink to="/" className="navbar-brand">
         Jobly
       </NavLink>
       {(user.username) ? loggedIn() : unauthed()}
