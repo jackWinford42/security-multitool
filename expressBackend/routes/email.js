@@ -15,7 +15,7 @@ router.get("/:email", async function (req, res, next) {
     const response = await axios({url});
     console.log(response)
     console.log("/////////////")
-    return {data: response};
+    return res.json({data: response.data});
   } catch (err) {
     return next(err);
   }

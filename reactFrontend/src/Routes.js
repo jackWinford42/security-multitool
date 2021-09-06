@@ -6,7 +6,7 @@ import Landing from "./Landing";
 import Nav from "./common/Nav";
 import Login from "./auth/Login";
 import Signup from "./auth/Signup";
-import Email from "./Email";
+import Email from "./email/Email";
 
 /** Router servers as a router and parent function for nav and page 
  * content on each route.

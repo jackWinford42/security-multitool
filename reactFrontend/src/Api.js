@@ -26,6 +26,7 @@ class RamtApi {
         : {};
 
     try {
+      console.log(url)
       return (await axios({ url, method, data, params, headers })).data;
     } catch (err) {
       console.error("API Error:", err.response);
@@ -58,6 +59,8 @@ class RamtApi {
 
   static async getEmailRes(email) {
     let res = await this.request(`email/${email}`);
+    console.log("PAST RESPONSE IN getEmailRes")
+    console.log(res);
     return res;
   }
 }
