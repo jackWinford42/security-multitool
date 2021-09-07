@@ -13,7 +13,7 @@ export default function Email() {
 
   async function handleSubmit(evt) {
     evt.preventDefault();
-    const res = await RamtApi.getEmailRes(email)
+    const res = (await RamtApi.getEmailRes(email)).data
     console.log("CHECKPOINT")
     console.log(res);
     setData(res)
@@ -45,7 +45,7 @@ export default function Email() {
           </form>
         </CardBody>
       </Card>
-      <Response data={data}/>
+      {data.message && <Response data={data}/>}
 		</div>
 	);
 }
