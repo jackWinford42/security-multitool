@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Alert, Card, CardBody } from 'reactstrap';
+import Button from "@material-ui/core/Button";
 import "./formStyles.css"
 
 /** Sign up form for getting the username, password, first name,
@@ -35,7 +36,7 @@ export default function Signup({ signup }) {
   }
 
   return (
-      <div className="SignupForm col-md-6 col-lg-4 offset-md-3 offset-lg-4">
+      <div className="SignupForm col-md-6 col-lg-4">
         <Card className="authFormCard">
           <CardBody>
             <form className="form-inline" onSubmit={handleSubmit}>
@@ -71,9 +72,9 @@ export default function Signup({ signup }) {
                 value={formData.profile_pic}
                 onChange={handleChange}
               />
-              <button type="submit" className="btn btn-lg btn-primary">
+              <Button variant="contained" color="primary" className="authButton" onClick={handleSubmit}>
                 sign up
-              </button>
+              </Button>
             </form>
             {errors.length > 0 && 
             errors.map(error => <Alert color="danger" key={error}>{error}</Alert>)}

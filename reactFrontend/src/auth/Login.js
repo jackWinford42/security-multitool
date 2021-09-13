@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Alert, Card, CardBody} from 'reactstrap';
+import Button from "@material-ui/core/Button";
 import "./formStyles.css"
 
 /** Sign up form for getting the username, password a user.
@@ -32,7 +33,7 @@ function LoginForm({ login }) {
   }
 
   return (
-    <div className="LoginForm col-md-6 col-lg-4 offset-md-3 offset-lg-4">
+    <div className="LoginForm col-md-6 col-lg-4">
       <Card>
         <CardBody>
           <form className="form-inline" onSubmit={handleSubmit}>
@@ -52,9 +53,9 @@ function LoginForm({ login }) {
               value={formData.password}
               onChange={handleChange}
             />
-            <button type="submit" className="authButton btn btn-lg btn-primary">
+            <Button variant="contained" color="primary" className="authButton" onClick={handleSubmit}>
               log in
-            </button>
+            </Button>
           </form>
           {errors.length ? <Alert color="danger">{errors}</Alert>:null}
         </CardBody>

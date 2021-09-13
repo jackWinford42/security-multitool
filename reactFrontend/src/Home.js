@@ -24,11 +24,11 @@ export default function Home() {
   console.log(displayHistory)
   const HistoryItems = displayHistory.map(row => {
     return (
-    <li key={uuidv4()}>
-      <h5>{row.item}</h5>
-      <p>type: {row.type}</p>
-      <p>safety score out of 100: {row.score}</p>
-    </li>
+      <li key={uuidv4()}>
+        <h5>{row.item}</h5>
+        <p>type: {row.type}</p>
+        <p>safety score out of 100: {row.score}</p>
+      </li>
     );
   })
 

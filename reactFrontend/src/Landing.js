@@ -1,5 +1,9 @@
 import React from "react";
 import {useSelector} from "react-redux";
+import Button from "@material-ui/core/Button";
+import Link from '@material-ui/core/Link';
+import { Link as RouterLink } from 'react-router-dom';
+import "./Landing.css";
 
 /** Render the landing page
  */
@@ -13,8 +17,12 @@ export default function Landing() {
 			{(user.username) ? 
 			greeting :
 			<p id="authButtons">
-				<a className="btn btn-primary font-weight-bold mr-3" href="/login">Log in</a>
-				<a className="btn btn-primary font-weight-bold" href="/sign-up">Sign up</a>
+        <Link component={RouterLink} to="/sign-up" className="authButtons">
+          <Button variant="contained">sign up</Button>
+        </Link>
+        <Link component={RouterLink} to="/login" className="authButtons">
+          <Button variant="contained">log in</Button>
+        </Link>
 			</p>}
 		</div>
 	);

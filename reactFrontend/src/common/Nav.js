@@ -1,55 +1,61 @@
 import React from "react";
 import {useSelector} from "react-redux";
-import { NavLink } from "react-router-dom";
-import { Navbar, Nav, NavItem } from "reactstrap";
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Button from "@material-ui/core/Button";
+import Toolbar from '@material-ui/core/Toolbar';
+import Link from '@material-ui/core/Link';
+import { Link as RouterLink } from 'react-router-dom';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.text.secondary,
+  },
+}));
 
 /** Displays a navbar with variable links depending on whether
  * there is an authenticated user or not.
  */
 export default function Navigation({logout}) {
+  const classes = useStyles();
   const user = useSelector(st => st.currUser);
-  console.log(user)
+
   const loggedIn = () => {
     return (
-      <Nav className="navbar-nav mr-auto" navbar>
-        <NavItem>
-          <NavLink to="/email">Email</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/url">Url</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/home">Home</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/profile">Profile</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/" onClick={logout}>Log out</NavLink>
-        </NavItem>
-      </Nav>
+      <>
+        <Link component={RouterLink} to="/email"><Button>Email</Button></Link>
+        <Link component={RouterLink} to="/url"><Button>Url</Button></Link>
+        <Link component={RouterLink} to="/home"><Button>Home</Button></Link>
+        <Link component={RouterLink} to="/profile"><Button>Profile</Button></Link>
+        <Link component={RouterLink} to="/" onClick={logout}><Button>Log out</Button></Link>
+      </>
     )
   }
 
   const unauthed = () => {
     return (
-      <Nav className="navbar-nav mr-auto" navbar>
-        <NavItem>
-          <NavLink to="/sign-up">sign up</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink to="/login">log in</NavLink>
-        </NavItem>
-      </Nav>
+      <>
+        <Link component={RouterLink} to="/sign-up"><Button>sign up</Button></Link>
+        <Link component={RouterLink} to="/login"><Button>log in</Button></Link>
+      </>
     )
   }
 
   return (
-    <Navbar color="light" light expand="md">
-      <NavLink to="/" className="navbar-brand">
-        Jobly
-      </NavLink>
-      {(user.username) ? loggedIn() : unauthed()}
-    </Navbar>
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <Link component={RouterLink} to="/">
+            <Button variant="outlined">
+              RAMT
+            </Button>
+          </Link>
+          <div className="position-absolute end-0">
+            {(user.username) ? loggedIn() : unauthed()}
+          </div>
+        </Toolbar>
+      </AppBar>
+    </div>
   );
 }
