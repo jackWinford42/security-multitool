@@ -1,3 +1,4 @@
+import "./Response.css";
 
 export default function Response({data}) {
   console.debug("RESPONSE COMPONENT")
@@ -16,6 +17,8 @@ export default function Response({data}) {
         return <p>the mail server exists and accepts all mail</p>
       case 3:
         return <p>there is nothing suspicious about the mail server</p>
+      default:
+        return <p>invalid email address or server error</p>
     }
   }
 
@@ -31,6 +34,8 @@ export default function Response({data}) {
         return <p>the dns for this email is valid, and accepts all mail</p>
       case 4:
         return <p>there is nothing suspicious about the dns for this email</p>
+      default:
+        return <p>invalid email address or server error</p>
     }
   }
 
@@ -39,7 +44,7 @@ export default function Response({data}) {
     <div className="Response">
       <h5>This email is {percent}% safe</h5>
       <div className="progress">
-        <div id="progressBar" class="progress-bar" role="progressbar" style={{width: `${percent}%`}} aria-valuenow={percent} aria-valuemin="0" aria-valuemax="100"></div>
+        <div id="progressBar" className="progress-bar" role="progressbar" style={{width: `${percent}%`}} aria-valuenow={percent} aria-valuemin="0" aria-valuemax="100"></div>
       </div>
       {overall(data.overall_score)}
       {smtp(data.smtp_score)}

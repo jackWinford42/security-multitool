@@ -6,6 +6,7 @@ const bcrypt = require("bcrypt");
 const {
   BadRequestError,
   UnauthorizedError,
+  NotFoundError,
 } = require("../expressError");
 
 const { BCRYPT_WORK_FACTOR } = require("../config.js");
@@ -81,19 +82,15 @@ class User {
         ],
     );
 
-    const user = result.rows[0];
-
-    return user;
+    return result.rows[0];
   }
 
-    /** Given a username, return data about user.
+  /** Given a username, return data about user.
    *
-   * Returns { username, first_name, last_name, is_admin, jobs }
-   *   where jobs is { id, title, company_handle, company_name, state }
+   * Returns { username, email, profile_pic }
    *
    * Throws NotFoundError if user not found.
-   **/
-
+  **/
   static async get(username) {
     const userRes = await db.query(
           `SELECT username,
@@ -107,6 +104,46 @@ class User {
     const user = userRes.rows[0];
 
     if (!user) throw new NotFoundError(`No user: ${username}`);
+
+    return user;
+  }
+
+  /** Given an email deleted a user's corresponding row from the table
+   * 
+   * Returns { deleted: username }
+   * 
+   * Throws NotFoundError if user not found.
+   **/
+  static async remove(email) {
+    await db.query(
+      `DELETE 
+      FROM users
+      WHERE email=$1`,
+      [email],
+    );
+
+    //if (!rowsDeleted) throw new NotFoundError(`No user: ${username}`);
+
+    return { deleted: email }
+  }
+
+  /** Given email and data for updating, update a user's row
+   * 
+   * Returns updated user row 
+   **/
+  static async update(email, data) {
+    const userRes = await db.query(
+      `UPDATE users
+      SET 
+      (username,
+        profile_pic)
+      VALUES ($2, $3)
+      WHERE email=$1
+      RETURNING username, email, profile_pic`,
+      [email, data.username, data.profile_pic]
+    )
+    console.log(userRes)
+    const user = userRes.rows[0];
 
     return user;
   }

@@ -7,19 +7,19 @@ import './App.css';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(false);
-  // const [currUser, setCurrUser] = useState(null);
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState("");
   const dispatch = useDispatch();
 
   useEffect(() => {
     async function getUser() {
       try {
         let { username } = jwt.decode(token);
-        console.log(username)
+
         RamtApi.token = token;
         const userData = await RamtApi.getCurrUser(username);
-        console.log(userData)
-        dispatch({type: 'BEGIN_AUTH_SESSION', user: userData})
+        RamtApi.user = await userData;
+
+        dispatch({type: "BEGIN_AUTH_SESSION", user: userData})
       } catch (err) {
         console.error("App getUser: issue loading user", err);
       }
@@ -62,9 +62,7 @@ export default function App() {
     console.debug("SUCCESSFULLY LOGGED OUT")
   }
 
-  if (isLoading) {
-    return <p>Loading &hellip;</p>;
-  }
+  if (isLoading) return <p>Loading &hellip;</p>;
 
   return (
     <div className="App">

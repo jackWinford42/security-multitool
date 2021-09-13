@@ -1,27 +1,22 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import {useSelector, useDispatch} from "react-redux";
+import { useSelector } from "react-redux";
 import "./App.css";
 import Landing from "./Landing";
 import Nav from "./common/Nav";
 import Login from "./auth/Login";
 import Signup from "./auth/Signup";
-import Email from "./email/Email";
+import Email from "./investigate/Email";
+import Url from "./investigate/Url";
+import Profile from "./profile/Profile";
+import EditProfile from "./profile/EditProfile";
 
 /** Router servers as a router and parent function for nav and page 
  * content on each route.
  */
 export default function Routes({signup, login, logout}) {
   const user = useSelector(st => st.currUser);
-  const dispatch = useDispatch();
   console.log(user)
-
-  // useEffect(function() {
-  //   async function fetchTitle() {
-  //     await dispatch({type: 'FETCH_USER'});
-  //   }
-  //   fetchTitle();
-  // }, [dispatch]);
 
   const privateRoutes = (
     <Switch>
@@ -32,13 +27,16 @@ export default function Routes({signup, login, logout}) {
         <Email/>
       </Route>
       <Route path="/url">
-        <Email/>
+        <Url/>
       </Route>
       <Route path="/home">
         <Email/>
       </Route>
       <Route path="/profile">
-        <Email/>
+        <Profile logout={logout}/>
+      </Route>
+      <Route path="/edit-profile">
+        <EditProfile/>
       </Route>
       <Route>
         <p>Hmmm. I can't seem to find what you want.</p>

@@ -5,7 +5,6 @@ import {useSelector} from "react-redux";
  */
 export default function Landing() {
 	const user = useSelector(st => st.currUser);
-	console.log(user)
 	const greeting = (<h4>Welcome back {user.username}</h4>);
 	return (
 		<div className="Landing">

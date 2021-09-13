@@ -13,6 +13,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:3001";
 class RamtApi {
   // the token for interactive with the API will be stored here.
   static token;
+  static user;
 
   static async request(endpoint, data = {}, method = "get") {
     console.debug("API Call:", endpoint, data, method);
@@ -37,11 +38,6 @@ class RamtApi {
 
   // Individual API routes
 
-  // static async updateCurrUser(username, data) {
-  //   let res = await this.request(`users/${username}`, data, "patch");
-  //   return res.token;
-  // }
-
   static async signup(data) {
     let res = await this.request("auth/register", data, "post");
     return res.token;
@@ -52,22 +48,43 @@ class RamtApi {
     return res.token;
   }
 
-  static async getCurrUser(username) {
-    let res = await this.request(`users/${username}`);
+  static async getCurrUser(email) {
+    let res = await this.request(`users/${email}`);
     return res.user;
   }
 
-  static async getEmailRes(email) {
-    let res = await this.request(`email/${email}`);
-    console.log("PAST RESPONSE IN getEmailRes")
-    console.log(res);
+  static async investigate(susData) {
+    let res = await this.request(`investigate`, susData, "post");
+    console.log(res)
+    const returns = await this.request(`uHist/${RamtApi.user.email}`, res.data, "post")
+    console.log(returns)
     return res;
   }
-}
 
-// for now, put token ("testuser" / "password" on class)
-RamtApi.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ" +
-    "SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0." +
-    "FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc";
+  static async delCurrUser(email) {
+    let res = await this.request(`users/${email}`, {} ,"delete");
+    return res;
+  }
+
+  static async editCurrUser(newData) {
+    let res = await this.request(`users/${newData.email}`, newData, "patch");
+    return res;
+  }
+
+  static async dumpUserHistory(email) {
+    let res = await this.request(`uHist/${email}/dump`, {}, "delete");
+    return res;
+  }
+
+  static async getUserHistory(email) {
+    let res = await this.request(`uHist/${email}`)
+    return res;
+  }
+
+  // static async addUserHistory(email, history) {
+  //   let res = await this.request(`uHist/${email}/history`, history, "post")
+  //   return res;
+  // }
+}
 
 export default RamtApi;
