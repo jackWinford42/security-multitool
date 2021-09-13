@@ -10,6 +10,7 @@ import Email from "./investigate/Email";
 import Url from "./investigate/Url";
 import Profile from "./profile/Profile";
 import EditProfile from "./profile/EditProfile";
+import Home from "./Home";
 
 /** Router servers as a router and parent function for nav and page 
  * content on each route.
@@ -30,7 +31,7 @@ export default function Routes({signup, login, logout}) {
         <Url/>
       </Route>
       <Route path="/home">
-        <Email/>
+        <Home/>
       </Route>
       <Route path="/profile">
         <Profile logout={logout}/>

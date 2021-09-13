@@ -29,6 +29,20 @@ class UserHistory {
       ],
     );
 
+    await db.query(
+      `INSERT INTO history 
+      (type,
+        item,
+        score)
+      VALUES ($1, $2, $3)
+      RETURNING type, item, score`,
+      [
+        type,
+        item,
+        score
+      ],
+    );
+
     return added.rows[0];
   }
 

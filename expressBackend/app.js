@@ -12,6 +12,7 @@ const authRoutes = require("./routes/auth");
 const usersRoutes = require("./routes/users");
 const investigateRoutes = require("./routes/investigate");
 const histRoutes = require("./routes/userHistory");
+const siteRoutes = require("./routes/siteHistory");
 
 const morgan = require("morgan");
 
@@ -26,6 +27,7 @@ app.use("/uHist", histRoutes);
 app.use("/auth", authRoutes);
 app.use("/users", usersRoutes);
 app.use("/investigate", investigateRoutes);
+app.use("/siteHist", siteRoutes);
 
 /** Handle 404 errors -- this matches everything */
 app.use(function (req, res, next) {

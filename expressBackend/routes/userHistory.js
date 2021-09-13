@@ -3,6 +3,7 @@
 /** Routes for users. */
 
 const express = require("express");
+const SiteHistory = require("../models/siteHistory");
 const UserHistory = require("../models/userHistory");
 
 const router = express.Router();
@@ -49,6 +50,7 @@ router.post("/:email", async function (req, res, next) {
     const item = ("sanitized_email" in req.body) ? req.body.sanitized_email : "https://" + req.body.domain; 
     let score = ("sanitized_email" in req.body) ? req.body.fraud_score : req.body.risk_score;
     score = 100 - score;
+    await SiteHistory.add(type, item, score)
     const newHistory = await UserHistory.add(type, item, score, req.params.email);
     return res.json(newHistory);
   } catch (err) {

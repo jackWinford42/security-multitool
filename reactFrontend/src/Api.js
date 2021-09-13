@@ -55,9 +55,7 @@ class RamtApi {
 
   static async investigate(susData) {
     let res = await this.request(`investigate`, susData, "post");
-    console.log(res)
-    const returns = await this.request(`uHist/${RamtApi.user.email}`, res.data, "post")
-    console.log(returns)
+    await this.request(`uHist/${RamtApi.user.email}`, res.data, "post")
     return res;
   }
 
@@ -81,6 +79,10 @@ class RamtApi {
     return res;
   }
 
+  static async getSiteHistory() {
+    let res = await this.request(`siteHist/`)
+    return res;
+  }
   // static async addUserHistory(email, history) {
   //   let res = await this.request(`uHist/${email}/history`, history, "post")
   //   return res;
