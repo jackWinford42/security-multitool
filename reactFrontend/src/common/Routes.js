@@ -1,16 +1,15 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useSelector } from "react-redux";
-import "./App.css";
-import Landing from "./Landing";
-import Nav from "./common/Nav";
-import Login from "./auth/Login";
-import Signup from "./auth/Signup";
-import Email from "./investigate/Email";
-import Url from "./investigate/Url";
-import Profile from "./profile/Profile";
-import EditProfile from "./profile/EditProfile";
-import Home from "./Home";
+import Landing from "../landing/Landing";
+import Nav from "./Nav";
+import Login from "../auth/Login";
+import Signup from "../auth/Signup";
+import Email from "../investigate/Email";
+import Url from "../investigate/Url";
+import Profile from "../profile/Profile";
+import EditProfile from "../profile/EditProfile";
+import Home from "../Home";
 
 /** Router servers as a router and parent function for nav and page 
  * content on each route.

@@ -11,6 +11,7 @@ const { createToken } = require("../helpers/tokens");
 const userAuthSchema = require("../schemas/userAuth.json");
 const userRegisterSchema = require("../schemas/userRegister.json");
 const { BadRequestError } = require("../expressError");
+const { authenticateJWT } = require("../middleware/auth");
 
 /** POST /auth/token:  { username, password } => { token }
  *
@@ -19,7 +20,7 @@ const { BadRequestError } = require("../expressError");
  * Authorization required: none
  */
 
-router.post("/token", async function (req, res, next) {
+router.post("/token", authenticateJWT, async function (req, res, next) {
   try {
     const validator = jsonschema.validate(req.body, userAuthSchema);
     if (!validator.valid) {
@@ -39,14 +40,14 @@ router.post("/token", async function (req, res, next) {
 
 /** POST /auth/register:   { user } => { token }
  *
- * user must include { username, password, firstName, lastName, email }
+ * user must include { email, username, profile_pic }
  *
  * Returns JWT token which can be used to authenticate further requests.
  *
  * Authorization required: none
  */
 
-router.post("/register", async function (req, res, next) {
+router.post("/register", authenticateJWT, async function (req, res, next) {
   try {
     const validator = jsonschema.validate(req.body, userRegisterSchema);
     if (!validator.valid) {

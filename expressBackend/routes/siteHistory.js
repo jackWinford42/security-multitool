@@ -4,15 +4,16 @@
 
 const express = require("express");
 const SiteHistory = require("../models/siteHistory");
+const { ensureLoggedIn } = require("../middleware/auth");
 
 const router = express.Router();
 
-/** GET /[email] => { history: userHistory }
+/** GET / => { siteHistory }
  * 
  * Authorization required: same-user-as-:email
  **/
 
-router.get("/", async function (req, res, next) {
+router.get("/", ensureLoggedIn, async function (req, res, next) {
   try {
     const siteHistory = await SiteHistory.get();
     return res.json(siteHistory);

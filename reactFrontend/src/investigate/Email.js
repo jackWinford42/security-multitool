@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, CardBody} from 'reactstrap';
-import RamtApi from "../Api";
+import RamtApi from "../common/Api";
 import Response from "./Response";
 
 /** Render the email page and handle a call to the emailrep api

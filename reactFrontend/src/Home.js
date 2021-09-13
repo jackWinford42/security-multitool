@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import RamtApi from "./Api";
+import RamtApi from "./common/Api";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);

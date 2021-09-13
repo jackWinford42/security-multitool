@@ -1,35 +1,37 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import RamtApi from "../Api";
+import { useSelector, useDispatch } from "react-redux";
+import RamtApi from "../common/Api";
 import { Card, CardBody} from 'reactstrap';
 import { useHistory } from "react-router-dom";
 
-export default function Profile() {
-  const {form, setForm} = useState({
+export default function EditProfile() {
+  const [formData, setFormData] = useState({
     username: "",
-    email: ""
-  })
+    profile_pic: ""
+  });
+  const dispatch = useDispatch();
   const user = useSelector(st => st.currUser);
   console.log(user)
   const history = useHistory();
 
   async function handleSubmit(evt) {
     evt.preventDefault();
-    const res = await RamtApi.editCurrUser(form)
+    const res = await RamtApi.editCurrUser(formData)
     console.log("CHECKPOINT")
     console.log(res);
-
+    res.user.email = user.email;
+    dispatch({type: "BEGIN_AUTH_SESSION", user: res.user})
     history.push("/profile");
   }
 
   // Update form data to reflect change in form fields
   function handleChange(evt) {
-    const { value } = evt.target;
-    setForm(value)
+    const { name, value } = evt.target;
+    setFormData(data => ({ ...data, [name]: value }));
   }
 
   return (
-    <div className="Profile">
+    <div className="EditProfile">
       <div id="title">
         <h1>Your Profile</h1>
       </div>
@@ -43,15 +45,15 @@ export default function Profile() {
                 className="form-control form-control-md"
                 name="username"
                 placeholder="username"
-                value={form.username}
+                value={formData.username}
                 onChange={handleChange}
               />
               <label>Profile Picture Url:</label>
               <input
                 className="form-control form-control-md"
-                name="email"
-                placeholder="email"
-                value={form.email}
+                name="profile_pic"
+                placeholder="profile_pic"
+                value={formData.profile_pic}
                 onChange={handleChange}
               />
               <button type="submit" className="authButton btn btn-lg btn-primary">

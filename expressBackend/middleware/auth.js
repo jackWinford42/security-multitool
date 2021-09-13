@@ -42,34 +42,17 @@ function ensureLoggedIn(req, res, next) {
   }
 }
 
-/** Middleware with the purpose of ensuring a 
- * user is logged in and that they are an Admin.
- * 
- * If either of the conditions are not meet then
- * this function will throw an UnauthorizedError()
- */
-function ensureLoggedInAndAdmin(req, res, next) {
-  try {
-    if (!res.locals.user) throw new UnauthorizedError();
-    if (!res.locals.user.isAdmin) throw new UnauthorizedError();
-    return next();
-  } catch (err) {
-    return next(err);
-  }
-}
-
 /** Middleware with the purpose of determining if a
- * user is either an admin or their username matches
- * the username parameter passed through the request.
- * Also if their is not a logged in user making the request
+ * user's email matches
+ * the email parameter passed through the request.
+ * Also if there is not a logged in user making the request
  * this function throws an UnauthorizedError(). The same error
- * is also thrown if the user is not an admin or not 
- * the same user.
+ * is also thrown if the user is not the same user.
  */
-function sameOrAdmin(req, res, next) {
+function sameUser(req, res, next) {
   try {
     if (!res.locals.user) throw new UnauthorizedError();
-    if ((res.locals.user.username !== req.params.username) && !res.locals.user.isAdmin) throw new UnauthorizedError();
+    if (res.locals.user.email !== req.params.email) throw new UnauthorizedError();
     return next();
   } catch (err) {
     return next(err);
@@ -79,6 +62,5 @@ function sameOrAdmin(req, res, next) {
 module.exports = {
   authenticateJWT,
   ensureLoggedIn,
-  ensureLoggedInAndAdmin,
-  sameOrAdmin,
+  sameUser,
 };

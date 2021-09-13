@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import RamtApi from "../Api";
+import RamtApi from "../common/Api";
 import UserHistory from "./UserHistory";
 
 export default function Profile({logout}) {

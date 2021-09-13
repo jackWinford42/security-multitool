@@ -91,14 +91,14 @@ class User {
    *
    * Throws NotFoundError if user not found.
   **/
-  static async get(username) {
+  static async get(email) {
     const userRes = await db.query(
           `SELECT username,
                   email,
                   profile_pic
             FROM users
-            WHERE username = $1`,
-        [username],
+            WHERE email = $1`,
+        [email],
     );
 
     const user = userRes.rows[0];
@@ -132,15 +132,13 @@ class User {
    * Returns updated user row 
    **/
   static async update(email, data) {
+    console.log(data)
     const userRes = await db.query(
       `UPDATE users
-      SET 
-      (username,
-        profile_pic)
-      VALUES ($2, $3)
-      WHERE email=$1
-      RETURNING username, email, profile_pic`,
-      [email, data.username, data.profile_pic]
+      SET username=$1, profile_pic=$2
+      WHERE email=$3
+      RETURNING username, profile_pic`,
+      [data.username, data.profile_pic, email],
     )
     console.log(userRes)
     const user = userRes.rows[0];

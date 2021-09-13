@@ -65,7 +65,8 @@ class RamtApi {
   }
 
   static async editCurrUser(newData) {
-    let res = await this.request(`users/${newData.email}`, newData, "patch");
+    console.log(RamtApi.user.email)
+    let res = await this.request(`users/${RamtApi.user.email}`, newData, "patch");
     return res;
   }
 
@@ -83,10 +84,6 @@ class RamtApi {
     let res = await this.request(`siteHist/`)
     return res;
   }
-  // static async addUserHistory(email, history) {
-  //   let res = await this.request(`uHist/${email}/history`, history, "post")
-  //   return res;
-  // }
 }
 
 export default RamtApi;

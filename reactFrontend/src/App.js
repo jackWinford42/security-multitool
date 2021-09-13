@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import jwt from "jsonwebtoken";
-import Routes from "./Routes";
-import RamtApi from "./Api";
+import Routes from "./common/Routes";
+import RamtApi from "./common/Api";
 import { useDispatch } from 'react-redux';
 import './App.css';
 
@@ -13,10 +13,9 @@ export default function App() {
   useEffect(() => {
     async function getUser() {
       try {
-        let { username } = jwt.decode(token);
+        let { email } = jwt.decode(token);
 
-        RamtApi.token = token;
-        const userData = await RamtApi.getCurrUser(username);
+        const userData = await RamtApi.getCurrUser(email);
         RamtApi.user = await userData;
 
         dispatch({type: "BEGIN_AUTH_SESSION", user: userData})
@@ -34,6 +33,7 @@ export default function App() {
       const returnedToken = await RamtApi.signup(formData)
       setToken(returnedToken);
       localStorage.setItem("token", returnedToken);
+      RamtApi.token = returnedToken;
       return {worked: true};
     } catch (errors) {
       console.error("There was an error while signing up", errors);
@@ -43,11 +43,11 @@ export default function App() {
 
   async function login(formData) {
     try {
-      console.log(formData)
       const returnedToken = await RamtApi.login(formData)
       console.log(returnedToken)
       setToken(returnedToken);
       localStorage.setItem("token", returnedToken);
+      RamtApi.token = returnedToken;
       return {worked: true};
     } catch (errors) {
       console.error("There was an error while logging in", errors);

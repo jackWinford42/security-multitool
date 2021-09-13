@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, CardBody} from 'reactstrap';
-import RamtApi from "../Api";
+import RamtApi from "../common/Api";
 import UrlResponse from "./UrlResponse";
 
 /** Render the Url page and handle a call to the api at the investigate route
