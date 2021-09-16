@@ -28,6 +28,7 @@ export default function Home() {
         <h5>{row.item}</h5>
         <p>type: {row.type}</p>
         <p>safety score out of 100: {row.score}</p>
+        <p>time analysed: {row.timeCreated}</p>
       </li>
     );
   })
