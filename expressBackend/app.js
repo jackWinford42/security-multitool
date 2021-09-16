@@ -18,7 +18,9 @@ const morgan = require("morgan");
 
 const app = express();
 
-app.use(cors());
+//allowing cross site requests from the react frontend hosted with surge
+app.use(cors({origin: "http://ramt.surge.sh/"}));
+
 app.use(express.json());
 app.use(morgan("tiny"));
 app.use(authenticateJWT);
@@ -28,9 +30,6 @@ app.use("/auth", authRoutes);
 app.use("/users", usersRoutes);
 app.use("/investigate", investigateRoutes);
 app.use("/siteHist", siteRoutes);
-
-// Have Node serve the files for our built React app
-app.use(express.static(path.resolve(__dirname, '../reactFrontend/build')));
 
 /** Handle 404 errors -- this matches everything */
 app.use(function (req, res, next) {

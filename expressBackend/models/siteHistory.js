@@ -31,8 +31,8 @@ class SiteHistory {
    */
   static async get() {
     const siteHistory = await db.query(
-      `SELECT type, item, score
-      FROM userHistory`,
+      `SELECT type, item, score, timeCreated
+      FROM history`,
     )
     return { history: siteHistory }
   }

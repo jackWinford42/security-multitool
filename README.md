@@ -1,8 +1,26 @@
-# reputation-analyses-multi-tool
+# RAMT: Reputation Analyses Multi Tool
 
-Email Rep API: https://blog.sublimesecurity.com/emailrep-query-and-report/
-Scans an email for its reputation and return information about it validity including a written report on its reputation. (free)
+RAMT is website where users can test suspicious emails and urls for reputation and analyses. When a user investigates an email or url, the website returns a reputation score as well as notes. RAMT also features a graph display of site-wide searches over various time ranges. Each user can see their history of tested items and edit their account.
 
-urlscan.io API v1: https://urlscan.io/docs/api/
-Urlscan.io can scan Urls, IPs, and domains. It returns information about the searched destination including its maliciousness. (free)
+Email and Url reputation analysis is done with ipqualityscore.com and their API for fraud detection. Ipqualityscore analyses over one billion actions a day, making the service trustworthy and effective. The api also draws propriety data from honeypots, traps, dark web monitoring, threat network, and reports from fortune 500 companies.
 
+The website is deployed at:
+http://ramt.surge.sh/
+
+RAMT was creating using the following technologies:  
+Front End:   
+React
+React-redux
+Javascript
+Css
+
+Back End:  
+Node
+Express
+Javascript
+PostgreSQL
+
+Deployed Using:
+Github
+Heroku
+Surge
