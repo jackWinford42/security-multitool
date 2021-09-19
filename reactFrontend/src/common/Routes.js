@@ -29,9 +29,7 @@ export default function Routes({signup, login, logout}) {
       <Route path="/url">
         <Url/>
       </Route>
-      <Route path="/home">
-        <Home/>
-      </Route>
+      <Route path="/home" render={(props) => <Home {...props}/>}/>
       <Route path="/profile">
         <Profile logout={logout}/>
       </Route>
@@ -63,13 +61,12 @@ export default function Routes({signup, login, logout}) {
       </Route>
     </Switch>
   )
-  console.log(!!user.username)
-  console.log((user.username) ? privateRoutes : unAuthedRoutes)
+
   return (
     <BrowserRouter>
       <Nav logout={logout}/>
       <main>
-        {(user.username) ? privateRoutes : unAuthedRoutes}
+        {(!!user.username) ? privateRoutes : unAuthedRoutes}
       </main>
     </BrowserRouter>
   );

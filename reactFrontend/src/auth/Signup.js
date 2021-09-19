@@ -25,8 +25,14 @@ export default function Signup({ signup }) {
     evt.preventDefault();
     //send the form data to app's signup function
     const res = await signup(formData)
-    if (res.worked) history.push("/");
-    else setErrors(res.errors);
+
+    if (res.worked) {
+      const location = {
+        pathname: '/home',
+        state: { fromAuth: true }
+      }
+      history.push(location);
+    } else setErrors(res.errors);
   }
 
   // Update form data to reflect change in form fields

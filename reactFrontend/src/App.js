@@ -6,33 +6,30 @@ import { useDispatch } from 'react-redux';
 import './App.css';
 
 export default function App() {
-  const [isLoading, setIsLoading] = useState(false);
   const [token, setToken] = useState("");
   const dispatch = useDispatch();
 
   useEffect(() => {
     async function getUser() {
       try {
+        console.log("INSIDE APP HOOK")
         let { email } = jwt.decode(token);
 
         const userData = await RamtApi.getCurrUser(email);
-        RamtApi.user = await userData;
-
-        dispatch({type: "BEGIN_AUTH_SESSION", user: userData})
+        RamtApi.user = userData;
+        
+        await dispatch({type: "BEGIN_AUTH_SESSION", user: userData});
       } catch (err) {
         console.error("App getUser: issue loading user", err);
       }
     }
-    setIsLoading(true);
     if (token) getUser();
-    setIsLoading(false);
-  }, [token, dispatch]);
+  }, [token]);
 
   async function signup(formData) {
     try {
       const returnedToken = await RamtApi.signup(formData)
       setToken(returnedToken);
-      localStorage.setItem("token", returnedToken);
       RamtApi.token = returnedToken;
       return {worked: true};
     } catch (errors) {
@@ -46,7 +43,6 @@ export default function App() {
       const returnedToken = await RamtApi.login(formData)
       console.log(returnedToken)
       setToken(returnedToken);
-      localStorage.setItem("token", returnedToken);
       RamtApi.token = returnedToken;
       return {worked: true};
     } catch (errors) {
@@ -58,11 +54,8 @@ export default function App() {
   async function logout() {
     setToken(null);
     dispatch({type: "END_AUTH_SESSION"})
-    localStorage.removeItem("token");
     console.debug("SUCCESSFULLY LOGGED OUT")
   }
-
-  if (isLoading) return <p>Loading &hellip;</p>;
 
   return (
     <div className="App">

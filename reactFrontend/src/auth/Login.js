@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 import { Alert, Card, CardBody} from 'reactstrap';
 import Button from "@material-ui/core/Button";
 import "./formStyles.css"
@@ -10,6 +11,7 @@ import "./formStyles.css"
  */
 function LoginForm({ login }) {
   const history = useHistory();
+  const dispatch = useDispatch();
   console.debug("Log in form");
 
   const [formData, setFormData] = useState({
@@ -21,9 +23,12 @@ function LoginForm({ login }) {
   async function handleSubmit(evt) {
     evt.preventDefault();
     //send the form data to app's login function
-    const res = await login(formData) 
-    if (res.worked) history.push("/");
-    else setErrors(res.errors);
+    const res = await login(formData)
+    if (res.worked) {
+      await dispatch({type: "LOCATION_CHANGE", location: "/login"})
+      history.push("/home")
+      
+    } else setErrors(res.errors);
   }
 
   // Update form data to reflect change in form fields

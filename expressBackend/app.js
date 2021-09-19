@@ -18,8 +18,8 @@ const morgan = require("morgan");
 
 const app = express();
 
-//allowing cross site requests from the react frontend hosted with surge
-app.use(cors({origin: "http://ramt.surge.sh/"}));
+
+app.use(cors());
 
 app.use(express.json());
 app.use(morgan("tiny"));

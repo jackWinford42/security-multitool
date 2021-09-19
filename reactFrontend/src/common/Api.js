@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE_URL = "http://localhost:3001";
-//"https://reputation-analyses-multi-tool.herokuapp.com" 
+
 /** API Class.
  *
  * Static class tying together methods used to get/send to to the API.
@@ -55,7 +55,6 @@ class RamtApi {
 
   static async investigate(susData) {
     let res = await this.request(`investigate`, susData, "post");
-    await this.request(`uHist/${RamtApi.user.email}`, res.data, "post")
     return res;
   }
 

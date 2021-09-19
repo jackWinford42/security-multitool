@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Card, CardBody} from 'reactstrap';
+import { useSelector } from "react-redux";
+import { Card, CardBody } from 'reactstrap';
 import RamtApi from "../common/Api";
 import Response from "./Response";
 
@@ -7,12 +8,13 @@ import Response from "./Response";
  */
 export default function Email() {
   console.debug("EMAIL COMPONENT")
+  const userEmail = useSelector(st => st.currUser.email);
   const [email, setEmail] = useState("");
   const [data, setData] = useState({});
 
   async function handleSubmit(evt) {
     evt.preventDefault();
-    const res = (await RamtApi.investigate({type: "email", investigate: email})).data
+    const res = (await RamtApi.investigate({type: "email", investigate: email, email: userEmail})).data
     console.log(res)
     setData(res)
   }

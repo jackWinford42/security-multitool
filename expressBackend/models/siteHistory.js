@@ -21,7 +21,7 @@ class SiteHistory {
         score
       ],
     );
-
+    console.log(added)
     return added.rows[0];
   }
 
@@ -31,7 +31,7 @@ class SiteHistory {
    */
   static async get() {
     const siteHistory = await db.query(
-      `SELECT type, item, score, timeCreated
+      `SELECT type, item, score, time_created
       FROM history`,
     )
     return { history: siteHistory }

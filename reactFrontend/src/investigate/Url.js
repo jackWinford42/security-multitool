@@ -1,20 +1,26 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Card, CardBody} from 'reactstrap';
 import RamtApi from "../common/Api";
 import UrlResponse from "./UrlResponse";
+import CircularProgress from '@mui/material/CircularProgress';
 
 /** Render the Url page and handle a call to the api at the investigate route
  */
 export default function Url() {
   console.debug("URL COMPONENT")
+  const userEmail = useSelector(st => st.currUser.email);
   const [url, setUrl] = useState("");
   const [data, setData] = useState({});
+  const [loading, setLoading] = useState(false)
 
   async function handleSubmit(evt) {
     evt.preventDefault();
-    const res = (await RamtApi.investigate({type: "url", investigate: encodeURIComponent(url)})).data
+    setLoading(true)
+    const res = (await RamtApi.investigate({type: "url", investigate: encodeURIComponent(url), email: userEmail})).data
     console.log("CHECKPOINT")
     console.log(res);
+    setLoading(false)
     setData(res)
   }
 
@@ -44,7 +50,8 @@ export default function Url() {
           </form>
         </CardBody>
       </Card>
-      {data.message && <UrlResponse data={data}/>}
+      {loading && <CircularProgress color="secondary" />}
+      {data.risk_score && <UrlResponse data={data}/>}
 		</div>
 	);
 }

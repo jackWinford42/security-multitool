@@ -26,7 +26,6 @@ export default function Navigation({logout}) {
       <>
         <Link component={RouterLink} to="/email"><Button>Email</Button></Link>
         <Link component={RouterLink} to="/url"><Button>Url</Button></Link>
-        <Link component={RouterLink} to="/home"><Button>Home</Button></Link>
         <Link component={RouterLink} to="/profile"><Button>Profile</Button></Link>
         <Link component={RouterLink} to="/" onClick={logout}><Button>Log out</Button></Link>
       </>
@@ -46,7 +45,7 @@ export default function Navigation({logout}) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Link component={RouterLink} to="/">
+          <Link component={RouterLink} to="/home">
             <Button variant="outlined">
               RAMT
             </Button>
