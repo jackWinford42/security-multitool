@@ -17,7 +17,7 @@ export default function App() {
 
         const userData = await RamtApi.getCurrUser(email);
         RamtApi.user = userData;
-        
+
         await dispatch({type: "BEGIN_AUTH_SESSION", user: userData});
       } catch (err) {
         console.error("App getUser: issue loading user", err);

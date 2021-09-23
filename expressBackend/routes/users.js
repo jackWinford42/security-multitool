@@ -4,12 +4,11 @@
 
 const jsonschema = require("jsonschema");
 
-const { authenticateJWT, ensureLoggedIn, sameUser } = require("../middleware/auth")
+const { authenticateJWT, sameUser } = require("../middleware/auth")
 const express = require("express");
 const { BadRequestError } = require("../expressError");
 const User = require("../models/users");
 const userUpdateSchema = require("../schemas/userUpdate.json");
-const UserHistory = require("../models/userHistory");
 
 const router = express.Router();
 
