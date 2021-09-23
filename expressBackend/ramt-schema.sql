@@ -4,10 +4,18 @@ CREATE DATABASE ramt;
 
 SET timezone = 'America/Los_Angeles';
 
+CREATE OR REPLACE FUNCTION update_time_created_column()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.time_created = CURRENT_TIMESTAMP; 
+    RETURN NEW;
+END;
+$$ language 'plpgsql';
+
 CREATE TABLE users (
   email TEXT PRIMARY KEY
     CHECK (position('@' IN email) > 1),
-  username VARCHAR(25) NOT NULL,
+  username VARCHAR(15) NOT NULL,
   password TEXT NOT NULL,
   profile_pic TEXT NOT NULL
 );
@@ -18,6 +26,7 @@ CREATE TABLE userHistory (
   item TEXT NOT NULL,
   score INT NOT NULL,
   email TEXT NOT NULL,
+  time_created TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (email) REFERENCES users ON DELETE CASCADE
 );
 
@@ -26,5 +35,10 @@ CREATE TABLE history (
   type TEXT NOT NULL,
   item TEXT NOT NULL,
   score INT NOT NULL,
-  time_created TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
+  time_created TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+  popularity INT DEFAULT 0
 );
+
+CREATE TRIGGER update_history_time_created BEFORE UPDATE
+ON history FOR EACH ROW EXECUTE PROCEDURE 
+update_time_created_column();

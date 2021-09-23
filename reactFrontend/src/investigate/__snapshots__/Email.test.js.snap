@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="Email"
+  >
+    <div
+      class="formCard card"
+    >
+      <div
+        class="card-body"
+      >
+        <p>
+          Enter an email to test its reputation.
+        </p>
+        <small>
+          Emails which are 100% safe are only saved to your history and are excluded from the site-wide history.
+        </small>
+        <form
+          class="form-inline"
+        >
+          <label>
+            Email:
+          </label>
+          <input
+            class="form-control form-control-md"
+            name="email"
+            placeholder="email"
+            value=""
+          />
+          <button
+            class="authButton btn btn-lg btn-primary"
+            type="submit"
+          >
+            Investigate
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="Url"
+  >
+    <div
+      class="card"
+    >
+      <div
+        class="card-body"
+      >
+        <p>
+          Enter an url to test its reputation.
+        </p>
+        <form
+          class="form-inline"
+        >
+          <label>
+            Url:
+          </label>
+          <input
+            class="form-control form-control-md"
+            name="url"
+            placeholder="url"
+            value=""
+          />
+          <button
+            class="authButton btn btn-lg btn-primary"
+            type="submit"
+          >
+            Investigate
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

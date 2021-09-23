@@ -1,4 +1,5 @@
 import "./Response.css";
+import { Card, CardBody} from 'reactstrap';
 
 export default function Response({data}) {
   console.debug("RESPONSE COMPONENT")
@@ -41,22 +42,24 @@ export default function Response({data}) {
 
   if (!data.valid) return <p>For best results, enter a valid email</p>
   return (
-    <div className="Response">
-      <h5>This email is {percent}% safe</h5>
-      <div className="progress">
-        <div id="progressBar" className="progress-bar" role="progressbar" style={{width: `${percent}%`}} aria-valuenow={percent} aria-valuemin="0" aria-valuemax="100"></div>
-      </div>
-      {overall(data.overall_score)}
-      {smtp(data.smtp_score)}
-      {data.disposable && <p>This email is suspected of belonging to a temporary or disposable mail service.
-        Usually associated with fraudsters and scammers.</p>}
-      {data.leaked && <p>This email address is associated with a recent database leak from a third party.
-        Leaked accounts pose a risk as they may have become compromised during a database breach.</p>}
-      {data.recent_abuse && <p>There has been recent verified abuse with this email address. Abuse could 
-        be a confirmed chargeback, fake signup, compromised device, fake app install, or similar malicious 
-        behavior within the past few days.</p>}
-      {data.honeypot && <p>This email is believed to be a SPAM trap, AKA a honeypot. Bulk mail 
-        sent to these emails increases your risk of being blacklisted by large ISPs and ending up in the spam folder.</p>}
-    </div>
+    <Card className="Response responseCard">
+      <CardBody>
+        <h5>This email is {percent}% safe</h5>
+        <div className="progress">
+          <div id="progressBar" className="progress-bar" role="progressbar" style={{width: `${percent}%`}} aria-valuenow={percent} aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        {overall(data.overall_score)}
+        {smtp(data.smtp_score)}
+        {data.disposable && <p>This email is suspected of belonging to a temporary or disposable mail service.
+          Usually associated with fraudsters and scammers.</p>}
+        {data.leaked && <p>This email address is associated with a recent database leak from a third party.
+          Leaked accounts pose a risk as they may have become compromised during a database breach.</p>}
+        {data.recent_abuse && <p>There has been recent verified abuse with this email address. Abuse could 
+          be a confirmed chargeback, fake signup, compromised device, fake app install, or similar malicious 
+          behavior within the past few days.</p>}
+        {data.honeypot && <p>This email is believed to be a SPAM trap, AKA a honeypot. Bulk mail 
+          sent to these emails increases your risk of being blacklisted by large ISPs and ending up in the spam folder.</p>}
+      </CardBody>
+    </Card>
   );
 }

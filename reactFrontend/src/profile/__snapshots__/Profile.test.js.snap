@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="Profile"
+  >
+    <div
+      id="title"
+    >
+      <h1>
+        Profile Page
+      </h1>
+    </div>
+    <div
+      id="profile_content"
+    >
+      <div
+        class="row"
+      >
+        <div
+          class="col-4"
+        >
+          <img
+            height="250"
+            id="profile_page_pic"
+            width="250"
+          />
+        </div>
+        <div
+          class="col-2"
+        />
+        <div
+          class="col-5"
+          id="right_profile_div"
+        >
+          <ul
+            class="list-group list-group-flush"
+          >
+            <li
+              class="list-group-item"
+            >
+              <span>
+                Display name: 
+              </span>
+            </li>
+            <li
+              class="list-group-item"
+            >
+              <span>
+                Email: 
+              </span>
+            </li>
+            <li
+              class="list-group-item"
+            >
+              <button
+                class="btn btn-lrg btn-warning"
+              >
+                Edit
+              </button>
+            </li>
+            <li
+              class="list-group-item"
+            >
+              <button
+                class="btn btn-lrg btn-danger"
+              >
+                Delete Account
+              </button>
+            </li>
+            <li
+              class="list-group-item"
+            >
+              <button
+                class="btn btn-lrg btn-danger"
+              >
+                Clear Your History
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="col-1"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from "react";
-import {useSelector} from "react-redux";
-import { v4 as uuidv4 } from "uuid";
-import RamtApi from "./common/Api";
-import { useDispatch } from 'react-redux';
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import HourglassBottomOutlinedIcon from '@mui/icons-material/HourglassBottomOutlined';
 import HistoryOutlinedIcon from '@mui/icons-material/HistoryOutlined';
@@ -15,58 +12,42 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import "./Home.css";
+import AllTime from "./AllTime";
+import Hot from "./Hot";
+import History from "./History";
 
 export default React.memo(function Home() {
   const user = useSelector(st => st.currUser);
   const prevLoc = useSelector(st => st.prevLocation)
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false)
-  const [displayHistory, setDisplayHistory] = useState([]);
-  const [view, setView] = useState('list');
+  const [view, setView] = useState('history');
 
-  useEffect(() => {
-    async function getHistory() {
-      try {
-        console.log("INSIDE HOME HOOK")
-        const siteHistory = await RamtApi.getSiteHistory();
-        console.log(siteHistory)
-        setDisplayHistory(siteHistory.history.rows);
-      } catch (err) {
-        console.error("SiteHistory get: issue loading history", err);
-      }
-    }
-    getHistory();
-  }, [])
-
-  console.log(prevLoc)
-  if (prevLoc === "/login" || prevLoc === "/sign") {
+  //only display the welcome dialog box if the user just signed in
+  if (prevLoc === "/login" || prevLoc === "/sign-up") {
     setOpen(true);
     dispatch({type: "LOCATION_CHANGE", location: "/home"})
-    console.log("got here")
   }
 
   const handleChange = (event, nextView) => {
     setView(nextView);
+    console.log(nextView)
   };
 
   const handleClose = () => {
-    console.log("IN CLOSE")
     setOpen(false)
   };
 
-  console.log(displayHistory)
-  const HistoryItems = displayHistory.map(row => {
-    return (
-      <li key={uuidv4()}>
-        <h5>{row.item}</h5>
-        <p>type: {row.type}</p>
-        <p>safety score out of 100: {row.score}</p>
-        <p>time analysed: {row.time_created}</p>
-      </li>
-    );
-  })
-  
-  console.log("PAST 54")
+  const choseRange = () => {
+    if (view === "history" ) {
+      return (<History/>)
+    } else if (view === "hot") {
+      return (<Hot/>)
+    } else {
+      return (<AllTime/>)
+    }
+  }
+
   return (
     <div className="Home">
       <ToggleButtonGroup
@@ -86,9 +67,7 @@ export default React.memo(function Home() {
           <HourglassBottomOutlinedIcon/>
         </ToggleButton>
       </ToggleButtonGroup>
-      <ul>
-        {HistoryItems}
-      </ul>
+      {choseRange()}
       <Dialog
         open={open}
         onClose={handleClose}

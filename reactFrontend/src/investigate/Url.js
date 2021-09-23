@@ -18,8 +18,7 @@ export default function Url() {
     evt.preventDefault();
     setLoading(true)
     const res = (await RamtApi.investigate({type: "url", investigate: encodeURIComponent(url), email: userEmail})).data
-    console.log("CHECKPOINT")
-    console.log(res);
+    console.log(res)
     setLoading(false)
     setData(res)
   }
@@ -51,7 +50,7 @@ export default function Url() {
         </CardBody>
       </Card>
       {loading && <CircularProgress color="secondary" />}
-      {data.risk_score && <UrlResponse data={data}/>}
+      {data.status_code === 200 && <UrlResponse data={data}/>}
 		</div>
 	);
 }

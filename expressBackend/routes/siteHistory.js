@@ -10,13 +10,16 @@ const router = express.Router();
 
 /** GET / => { siteHistory }
  * 
- * Authorization required: same-user-as-:email
+ * Authorization required: user must be logged in 
  **/
 
-router.get("/", ensureLoggedIn, async function (req, res, next) {
+router.get("/:range", ensureLoggedIn, async function (req, res, next) {
   try {
-    const siteHistory = await SiteHistory.get();
-    return res.json(siteHistory);
+    let history;
+    if (req.params.range === "all") history = await SiteHistory.get();
+    else if (req.params.range === "allTime") history = await SiteHistory.getTop();
+    else history = await SiteHistory.getTopWeek();
+    return res.json(history);
   } catch (err) {
     return next(err);
   }

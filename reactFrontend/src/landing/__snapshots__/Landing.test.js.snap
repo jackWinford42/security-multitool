@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="Landing"
+  >
+    <h1>
+      RAMT
+    </h1>
+    <h5>
+      home of the Reputation Analyses Multi Tool
+    </h5>
+    <p
+      id="authButtons"
+    >
+      <a
+        class="MuiTypography-root MuiLink-root MuiLink-underlineHover authButtonsLeft MuiTypography-colorPrimary"
+        href="/sign-up"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="MuiButton-label"
+          >
+            sign up
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
+      </a>
+      <a
+        class="MuiTypography-root MuiLink-root MuiLink-underlineHover authButtonsRight MuiTypography-colorPrimary"
+        href="/login"
+      >
+        <button
+          class="MuiButtonBase-root MuiButton-root MuiButton-contained"
+          tabindex="0"
+          type="button"
+        >
+          <span
+            class="MuiButton-label"
+          >
+            log in
+          </span>
+          <span
+            class="MuiTouchRipple-root"
+          />
+        </button>
+      </a>
+    </p>
+  </div>
+</DocumentFragment>
+`;

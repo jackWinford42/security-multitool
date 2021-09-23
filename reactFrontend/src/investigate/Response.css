@@ -1,3 +1,10 @@
 #progressBar {
     width: 300px;
 }
+
+.responseCard {
+    position: relative;
+    padding-top: 500px;
+    margin: 0 auto;
+    width: 700px;
+}

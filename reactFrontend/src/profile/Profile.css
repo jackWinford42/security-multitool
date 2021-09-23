@@ -7,20 +7,11 @@
 #profile_content {
     padding: 2em;
     margin-top: 3em;
-    background-color: #c3e6cb;
 }
 
 #right_profile_div {
     font-size: 1.5em;
     text-align: center;
-}
-
-#right_profile_div ul {
-    background-color: #c3e6cb;
-}
-
-#right_profile_div ul li{
-    background-color: #c3e6cb;
 }
 
 .form_element {
@@ -46,3 +37,10 @@
     margin: 0 auto;
 }
 /* end profile page styling */
+
+/* begin UserHistory styling */
+
+.UserHistory ul {
+    width: 700px;
+    margin: 0 auto;
+}

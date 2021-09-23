@@ -1,13 +1,14 @@
 import "./Response.css";
+import { Card, CardBody} from 'reactstrap';
 
 export default function UrlResponse({data}) {
-    console.debug("RESPONSE COMPONENT")
+  console.debug("RESPONSE COMPONENT")
+  const percent = 100 - data.risk_score;
 
-    const percent = 100 - data.risk_score;
-  
-    if (data.page_size === 0) return <p>For best results, enter a valid url. Also, the url you entered may be unreachable.</p>
-    return (
-      <div className="UrlResponse">
+  if (data.page_size === 0) return <p>For best results, enter a valid url. Also, the url you entered may be unreachable.</p>
+  return (
+    <Card className="UrlResponse responseCard">
+      <CardBody>
         <h5>This url is {percent}% safe</h5>
         <div className="progress">
           <div id="progressBar" className="progress-bar" role="progressbar" style={{width: `${percent}%`}} aria-valuenow={percent} aria-valuemin="0" aria-valuemax="100"></div>
@@ -17,6 +18,7 @@ export default function UrlResponse({data}) {
         {data.malware && <p>This url is associated with malware and viruses.</p>}
         {data.phishing && <p>This url has been found to be associated with malicious phishing behavior.</p>}
         {data.dns_valid && <p>The domain of this URL has valid dns records.</p>}
-      </div>
-    );
+      </CardBody>
+    </Card>
+  );
 }

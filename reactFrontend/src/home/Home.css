@@ -1,0 +1,36 @@
+#rangeBar {
+    position: fixed;
+    left: 20px;
+    top: 100px;
+}
+
+ul {
+    list-style: none;
+}
+
+.history {
+    width: 700px;
+    margin: 0 auto;
+}
+
+.historyGraph {
+    width: 66vw;
+    margin: 0 auto;
+}
+
+.email {
+    padding: 5px;
+    border: solid black 1px;
+    background-color: violet;
+    margin-bottom: 10px;
+}
+
+.url {
+    padding: 5px;
+    border: solid black 1px;
+    background-color: cyan;
+}
+
+.BarGraph {
+    padding-top: 50px;
+}

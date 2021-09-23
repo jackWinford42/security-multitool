@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import RamtApi from "../common/Api";
 import UserHistory from "./UserHistory";
+import "./Profile.css"
 
 export default function Profile({logout}) {
   const user = useSelector(st => st.currUser);
@@ -46,7 +47,7 @@ export default function Profile({logout}) {
   return (
     <div className="Profile">
       <div id="title">
-        <h1>Your Profile</h1>
+        <h1>Profile Page</h1>
       </div>
       <div id="profile_content">
         <div className="row">

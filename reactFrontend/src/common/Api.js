@@ -79,8 +79,8 @@ class RamtApi {
     return res;
   }
 
-  static async getSiteHistory() {
-    let res = await this.request(`siteHist/`)
+  static async getSiteHistory(range) {
+    let res = await this.request(`siteHist/${range}`)
     return res;
   }
 }

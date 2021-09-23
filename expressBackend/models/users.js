@@ -102,8 +102,7 @@ class User {
     );
 
     const user = userRes.rows[0];
-
-    if (!user) throw new NotFoundError(`No user: ${username}`);
+    if (user === undefined) throw new NotFoundError(`No user: ${email}`);
 
     return user;
   }
@@ -122,8 +121,6 @@ class User {
       [email],
     );
 
-    //if (!rowsDeleted) throw new NotFoundError(`No user: ${username}`);
-
     return { deleted: email }
   }
 
@@ -132,7 +129,6 @@ class User {
    * Returns updated user row 
    **/
   static async update(email, data) {
-    console.log(data)
     const userRes = await db.query(
       `UPDATE users
       SET username=$1, profile_pic=$2
@@ -140,10 +136,9 @@ class User {
       RETURNING username, profile_pic`,
       [data.username, data.profile_pic, email],
     )
-    console.log(userRes)
     const user = userRes.rows[0];
 
-    return user;
+    return {"updateData": user};
   }
 }
 

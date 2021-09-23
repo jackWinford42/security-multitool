@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <p>
+    For best results, enter a valid email
+  </p>
+</DocumentFragment>
+`;

@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="EditProfile"
+  >
+    <div
+      id="title"
+    >
+      <h1>
+        Your Profile
+      </h1>
+    </div>
+    <div
+      id="profile_content"
+    >
+      <div
+        class="card"
+      >
+        <div
+          class="card-body"
+        >
+          <p>
+            Edit details for your account.
+          </p>
+          <form
+            class="form-inline"
+          >
+            <label>
+              Username:
+            </label>
+            <input
+              class="form-control form-control-md"
+              name="username"
+              placeholder="username"
+              value=""
+            />
+            <label>
+              Profile Picture Url:
+            </label>
+            <input
+              class="form-control form-control-md"
+              name="profile_pic"
+              placeholder="profile_pic"
+              value=""
+            />
+            <button
+              class="authButton btn btn-lg btn-primary"
+              type="submit"
+            >
+              Edit
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

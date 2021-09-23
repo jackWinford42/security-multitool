@@ -1,5 +1,14 @@
-.authButtons {
-    padding: 50px;
+#authButtons {
+    width: 250px;
+    margin: 0 auto;
+}
+
+.authButtonsLeft {
+    float: left;
+}
+
+.authButtonsRight {
+    float: right;
 }
 
 .Landing {

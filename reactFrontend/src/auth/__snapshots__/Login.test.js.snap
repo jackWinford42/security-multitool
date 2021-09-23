@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="LoginForm col-md-6 col-lg-4"
+  >
+    <div
+      class="card"
+    >
+      <div
+        class="card-body"
+      >
+        <form
+          class="form-inline"
+        >
+          <label>
+            Username:
+          </label>
+          <input
+            class="form-control form-control-md"
+            name="username"
+            placeholder="username"
+            value=""
+          />
+          <label>
+            Password:
+          </label>
+          <input
+            class="form-control form-control-md"
+            id="bottomInput"
+            name="password"
+            placeholder="password"
+            type="password"
+            value=""
+          />
+          <button
+            class="MuiButtonBase-root MuiButton-root MuiButton-contained authButton MuiButton-containedPrimary"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="MuiButton-label"
+            >
+              log in
+            </span>
+            <span
+              class="MuiTouchRipple-root"
+            />
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

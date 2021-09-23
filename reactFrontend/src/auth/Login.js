@@ -5,7 +5,7 @@ import { Alert, Card, CardBody} from 'reactstrap';
 import Button from "@material-ui/core/Button";
 import "./formStyles.css"
 
-/** Sign up form for getting the username, password a user.
+/** log in form for getting the username, password a user.
  *  On submit a callback function from app is called to authenticate 
  * the user with the values from the form.
  */
@@ -25,6 +25,7 @@ function LoginForm({ login }) {
     //send the form data to app's login function
     const res = await login(formData)
     if (res.worked) {
+      //store the path in redux store so home can display a pop-up
       await dispatch({type: "LOCATION_CHANGE", location: "/login"})
       history.push("/home")
       
@@ -36,7 +37,6 @@ function LoginForm({ login }) {
     const { name, value } = evt.target;
     setFormData(data => ({ ...data, [name]: value }));
   }
-
   return (
     <div className="LoginForm col-md-6 col-lg-4">
       <Card>
@@ -53,6 +53,8 @@ function LoginForm({ login }) {
             <label>Password:</label>
             <input
               className="form-control form-control-md"
+              id="bottomInput"
+              type="password"
               name="password"
               placeholder="password"
               value={formData.password}

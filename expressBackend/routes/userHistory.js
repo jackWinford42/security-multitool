@@ -4,7 +4,6 @@
 
 const express = require("express");
 const { sameUser } = require("../middleware/auth")
-const SiteHistory = require("../models/siteHistory");
 const UserHistory = require("../models/userHistory");
 
 const router = express.Router();
@@ -38,27 +37,5 @@ router.get("/:email", sameUser, async function (req, res, next) {
     return next(err);
   }
 });
-
-/** POST /[email] => { added: new }
- * 
- * Returns the new history item on success
- * 
- * Authorization required: same-user-as-:email
- */
-
-// router.post("/:email", sameUser, async function (req, res, next) {
-//   try {
-//     console.log("req.body: " + req.body)
-//     const type = ("sanitized_email" in req.body) ? "email" : "url";
-//     const item = ("sanitized_email" in req.body) ? req.body.sanitized_email : "https://" + req.body.domain; 
-//     let score = ("sanitized_email" in req.body) ? req.body.fraud_score : req.body.risk_score;
-//     score = 100 - score;
-//     await SiteHistory.add(type, item, score)
-//     const newHistory = await UserHistory.add(type, item, score, req.params.email);
-//     return res.json(newHistory);
-//   } catch (err) {
-//     return next(err);
-//   }
-// });
 
 module.exports = router;

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 import { Alert, Card, CardBody } from 'reactstrap';
 import Button from "@material-ui/core/Button";
 import "./formStyles.css"
@@ -11,6 +12,7 @@ import "./formStyles.css"
  */
 export default function Signup({ signup }) {
   const history = useHistory();
+  const dispatch = useDispatch();
   console.debug("Sign up form");
 
   const [formData, setFormData] = useState({
@@ -27,11 +29,9 @@ export default function Signup({ signup }) {
     const res = await signup(formData)
 
     if (res.worked) {
-      const location = {
-        pathname: '/home',
-        state: { fromAuth: true }
-      }
-      history.push(location);
+      //store the path in redux store so home can display a pop-up
+      await dispatch({type: "LOCATION_CHANGE", location: "/sign-up"})
+      history.push("/home");
     } else setErrors(res.errors);
   }
 
@@ -57,6 +57,7 @@ export default function Signup({ signup }) {
               <label>Password:</label>
               <input
                 className="form-control form-control-md"
+                type="password"
                 name="password"
                 placeholder="password"
                 value={formData.password}
@@ -73,6 +74,7 @@ export default function Signup({ signup }) {
               <label>Profile Picture Url:</label>
               <input
                 className="form-control form-control-md"
+                id="bottomInput"
                 name="profile_pic"
                 placeholder="url"
                 value={formData.profile_pic}

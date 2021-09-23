@@ -24,7 +24,7 @@ export default function App() {
       }
     }
     if (token) getUser();
-  }, [token]);
+  }, [token, dispatch]);
 
   async function signup(formData) {
     try {

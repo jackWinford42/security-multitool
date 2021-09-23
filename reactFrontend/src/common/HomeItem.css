@@ -1,0 +1,26 @@
+li {
+    padding-top: 50px;
+}
+
+.homeItemBody {
+    width: 500px;
+    margin: 0 auto;
+}
+
+.Doughnut {
+    width: 150px !important;
+    height: 150px !important;
+    float: left;
+}
+
+.itemRight {
+    padding-top: 10px;
+    float: right;
+}
+
+.itemRight > p {
+    padding-top: 10px;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}

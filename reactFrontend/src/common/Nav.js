@@ -45,11 +45,17 @@ export default function Navigation({logout}) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
+          {(user.username) ? 
           <Link component={RouterLink} to="/home">
             <Button variant="outlined">
               RAMT
             </Button>
-          </Link>
+          </Link> :
+          <Link component={RouterLink} to="/">
+            <Button variant="outlined">
+              RAMT
+            </Button>
+          </Link>}
           <div className="position-absolute end-0">
             {(user.username) ? loggedIn() : unauthed()}
           </div>
