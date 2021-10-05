@@ -20,7 +20,7 @@ const { authenticateJWT } = require("../middleware/auth");
  * Authorization required: none
  */
 
-router.post("/token", authenticateJWT, async function (req, res, next) {
+router.post("/token", async function (req, res, next) {
   try {
     const validator = jsonschema.validate(req.body, userAuthSchema);
     if (!validator.valid) {
@@ -47,7 +47,7 @@ router.post("/token", authenticateJWT, async function (req, res, next) {
  * Authorization required: none
  */
 
-router.post("/register", authenticateJWT, async function (req, res, next) {
+router.post("/register", async function (req, res, next) {
   try {
     const validator = jsonschema.validate(req.body, userRegisterSchema);
     if (!validator.valid) {

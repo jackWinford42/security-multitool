@@ -4,6 +4,10 @@ const BASE_URL = "http://localhost:3001";
 
 /** API Class.
  *
+ * Static class tying together methods used to get/send to to the API.
+ * There shouldn't be any frontend-specific stuff here, and there shouldn't
+ * be any API-aware stuff elsewhere in the frontend.
+ *
  */
 
 class RamtApi {
@@ -57,6 +61,7 @@ class RamtApi {
   }
 
   static async editCurrUser(newData) {
+    console.log(RamtApi.user.email)
     let res = await this.request(`users/${RamtApi.user.email}`, newData, "patch");
     return res;
   }
