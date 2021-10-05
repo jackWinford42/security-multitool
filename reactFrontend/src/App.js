@@ -4,9 +4,12 @@ import Routes from "./common/Routes";
 import RamtApi from "./common/Api";
 import { useDispatch } from 'react-redux';
 import './App.css';
+import useLocalStorage from "./hooks/useLocalStorage";
+
+const TOKEN_STORAGE_ID = "start token"
 
 export default function App() {
-  const [token, setToken] = useState("");
+  const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
   const dispatch = useDispatch();
 
   useEffect(() => {

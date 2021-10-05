@@ -20,9 +20,7 @@ export default function Routes({signup, login, logout}) {
 
   const privateRoutes = (
     <Switch>
-      <Route exact path="/">
-        <Landing/>
-      </Route>
+      <Route exact path="/" render={(props) => <Home {...props}/>}/>
       <Route path="/email">
         <Email/>
       </Route>
