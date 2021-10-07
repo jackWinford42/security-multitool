@@ -11,6 +11,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import Tooltip from '@mui/material/Tooltip';
 import "./Home.css";
 import AllTime from "./AllTime";
 import Hot from "./Hot";
@@ -57,15 +58,21 @@ export default React.memo(function Home() {
         exclusive
         onChange={handleChange}
       >
-        <ToggleButton value="history" aria-label="history">
-          <HistoryOutlinedIcon/>
-        </ToggleButton>
-        <ToggleButton value="hot" aria-label="hot">
-          <LocalFireDepartmentIcon/>
-        </ToggleButton>
-        <ToggleButton value="allTime" aria-label="allTime">
-          <HourglassBottomOutlinedIcon/>
-        </ToggleButton>
+        <Tooltip title="Recent History" placement="right">
+          <ToggleButton value="history" aria-label="history">
+            <HistoryOutlinedIcon/>
+          </ToggleButton>        
+        </Tooltip>
+        <Tooltip title="Hot" placement="right">
+          <ToggleButton value="hot" aria-label="hot">
+            <LocalFireDepartmentIcon/>
+          </ToggleButton>
+        </Tooltip>
+        <Tooltip title="All Time" placement="right">
+          <ToggleButton value="allTime" aria-label="allTime">
+            <HourglassBottomOutlinedIcon/>
+          </ToggleButton>
+        </Tooltip>
       </ToggleButtonGroup>
       {choseRange()}
       <Dialog

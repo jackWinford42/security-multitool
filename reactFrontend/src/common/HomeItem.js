@@ -4,7 +4,7 @@ import "./HomeItem.css"
 
 export default function HomeItem({row}) {
   const state = {
-    labels: ['Safe', 'Fraudulent'],
+    labels: ['Safety %', 'Danger %'],
     datasets: [
       {
         label: 'Safety',

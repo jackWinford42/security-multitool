@@ -3,6 +3,12 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import RamtApi from "../common/Api";
 import UserHistory from "./UserHistory";
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import "./Profile.css"
 
 export default function Profile({logout}) {
@@ -11,6 +17,7 @@ export default function Profile({logout}) {
   const [isLoading, setIsLoading] = useState(false);
   const [empty, setEmpty] = useState(true);
   const [displayHistory, setDisplayHistory] = useState({});
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     async function getHistory() {
@@ -38,6 +45,14 @@ export default function Profile({logout}) {
     logout();
   }
 
+  const handleOpen = () => {
+    setOpen(true)
+  };
+
+  const handleClose = () => {
+    setOpen(false)
+  };
+
   const dumpHistory = () => {
     RamtApi.dumpUserHistory(user.email);
     setEmpty(true);
@@ -63,7 +78,7 @@ export default function Profile({logout}) {
                 <button onClick={goToEdit} className="btn btn-lrg btn-warning">Edit</button>
               </li>
               <li className="list-group-item">
-                <button onClick={deleteUser} className="btn btn-lrg btn-danger">Delete Account</button>
+                <button onClick={handleOpen} className="btn btn-lrg btn-danger">Delete Account</button>
               </li>
               <li className="list-group-item">
                 <button onClick={dumpHistory} className="btn btn-lrg btn-danger">Clear Your History</button>
@@ -74,6 +89,29 @@ export default function Profile({logout}) {
         </div>
       </div>
       { displayHistory.history && <UserHistory HistoryItems={displayHistory.history.rows}/>}
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="dialog-title"
+        aria-describedby="dialog-description"
+      >
+        <DialogTitle id="dialog-title">
+          Are you sure you would like to delete your account?
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="dialog-description">
+            Deleting your account is permanent and will remove your history.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} autoFocus>
+            no
+          </Button>
+          <Button onClick={deleteUser} autoFocus>
+            yes
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   )
 }

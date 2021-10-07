@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useEffect} from "react";
 import jwt from "jsonwebtoken";
 import Routes from "./common/Routes";
 import RamtApi from "./common/Api";
@@ -18,6 +18,7 @@ export default function App() {
         console.log("INSIDE APP HOOK")
         let { email } = jwt.decode(token);
 
+        if (!RamtApi.token) RamtApi.token = token;
         const userData = await RamtApi.getCurrUser(email);
         RamtApi.user = userData;
 

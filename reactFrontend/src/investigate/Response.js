@@ -1,7 +1,8 @@
 import "./Response.css";
 import { Card, CardBody} from 'reactstrap';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
-export default function Response({data}) {
+export default function Response({data, open}) {
   console.debug("RESPONSE COMPONENT")
 
   const percent = 100-data.fraud_score;
@@ -44,7 +45,7 @@ export default function Response({data}) {
   return (
     <Card className="Response responseCard">
       <CardBody>
-        <h5>This email is {percent}% safe</h5>
+        <h5>This email is {percent}% safe <InfoOutlinedIcon id="infoIcon" onClick={() => open()}/></h5>
         <div className="progress">
           <div id="progressBar" className="progress-bar" role="progressbar" style={{width: `${percent}%`}} aria-valuenow={percent} aria-valuemin="0" aria-valuemax="100"></div>
         </div>

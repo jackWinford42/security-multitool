@@ -45,9 +45,6 @@ export default function Routes({signup, login, logout}) {
       <Route exact path="/">
         <Landing/>
       </Route>
-      <Route path="/email">
-        <Email/>
-      </Route>
       <Route path="/login">
         <Login login={login}/>
       </Route>

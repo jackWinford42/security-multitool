@@ -65,6 +65,7 @@ export default React.memo(function AllTime() {
       {loading && <CircularProgress color="secondary"/>}
       {!loading && 
       <>
+        <h1>All Time Most Popular Items</h1>
         <Bar
           className="BarGraph"
           data={(off) ? scoreState : popState}
@@ -80,10 +81,11 @@ export default React.memo(function AllTime() {
             }
           }}
         />
-        <LabeledSwitchMaterialUi labelLeft="popularity" labelRight="score" 
+        <LabeledSwitchMaterialUi labelLeft="popularity" labelRight="score"
         styleLabelLeft={{color: "rgb(0,0,153)"}}
         styleLabelRight={{color: "rgb(153,0,0)"}}
         onChange={() => setOff(!off)}/>
+        <p>The popularity score is determined by how many times each item has been investigated.</p>
       </>}
     </div>
   )

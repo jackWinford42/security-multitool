@@ -1,15 +1,16 @@
 import "./Response.css";
 import { Card, CardBody} from 'reactstrap';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
-export default function UrlResponse({data}) {
+export default function UrlResponse({data, open}) {
   console.debug("RESPONSE COMPONENT")
   const percent = 100 - data.risk_score;
 
-  if (data.page_size === 0) return <p>For best results, enter a valid url. Also, the url you entered may be unreachable.</p>
+  if (!data.success) return <p>For best results, enter a valid url. Also, the url you entered may be unreachable.</p>
   return (
     <Card className="UrlResponse responseCard">
       <CardBody>
-        <h5>This url is {percent}% safe</h5>
+        <h5>This url is {percent}% safe <InfoOutlinedIcon id="infoIcon" onClick={() => open()}/></h5>
         <div className="progress">
           <div id="progressBar" className="progress-bar" role="progressbar" style={{width: `${percent}%`}} aria-valuenow={percent} aria-valuemin="0" aria-valuemax="100"></div>
         </div>

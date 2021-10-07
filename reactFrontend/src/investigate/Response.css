@@ -4,7 +4,12 @@
 
 .responseCard {
     position: relative;
-    padding-top: 500px;
+    margin-top: 500px;
     margin: 0 auto;
     width: 700px;
+}
+
+#infoIcon:hover {
+    cursor: pointer;
+    color: grey;
 }
