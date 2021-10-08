@@ -12,8 +12,9 @@ exports[`matches snapshot 1`] = `
     >
       <button
         aria-label="history"
-        aria-pressed="true"
-        class="MuiButtonBase-root MuiToggleButton-root Mui-selected MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedVertical css-ueukts-MuiButtonBase-root-MuiToggleButton-root"
+        aria-pressed="false"
+        class="MuiButtonBase-root MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedVertical css-ueukts-MuiButtonBase-root-MuiToggleButton-root"
+        data-mui-internal-clone-element="true"
         tabindex="0"
         type="button"
         value="history"
@@ -37,6 +38,7 @@ exports[`matches snapshot 1`] = `
         aria-label="hot"
         aria-pressed="false"
         class="MuiButtonBase-root MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedVertical css-ueukts-MuiButtonBase-root-MuiToggleButton-root"
+        data-mui-internal-clone-element="true"
         tabindex="0"
         type="button"
         value="hot"
@@ -60,6 +62,7 @@ exports[`matches snapshot 1`] = `
         aria-label="allTime"
         aria-pressed="false"
         class="MuiButtonBase-root MuiToggleButton-root MuiToggleButton-sizeMedium MuiToggleButton-standard MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedVertical css-ueukts-MuiButtonBase-root-MuiToggleButton-root"
+        data-mui-internal-clone-element="true"
         tabindex="0"
         type="button"
         value="allTime"

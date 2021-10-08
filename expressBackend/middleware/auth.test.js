@@ -44,17 +44,6 @@ describe("authenticateJWT", function () {
     authenticateJWT(req, res, next);
     expect(res.locals).toEqual({});
   });
-
-  test("does not work: invalid token", function () {
-    expect.assertions(2);
-    const req = { headers: { authorization: `Bearer ${badJwt}` } };
-    const res = { locals: {} };
-    const next = function (err) {
-      expect(err).toBeTruthy();
-    };
-    authenticateJWT(req, res, next);
-    expect(res.locals).toEqual({});
-  });
 });
 
 

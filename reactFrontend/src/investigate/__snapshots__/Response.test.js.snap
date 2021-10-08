@@ -2,8 +2,11 @@
 
 exports[`matches snapshot 1`] = `
 <DocumentFragment>
-  <p>
+  <div
+    class="redAlert alert alert-danger fade"
+    role="alert"
+  >
     For best results, enter a valid email
-  </p>
+  </div>
 </DocumentFragment>
 `;

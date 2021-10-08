@@ -38,7 +38,7 @@ describe("PATCH /users/:email", function () {
           .send({username: 'u3333', profile_pic: 'abcde'})
           .set("authorization", `Bearer ${u1Token}`)
     console.log(resp.body)
-    expect(resp.body).toEqual({ user: { updateData: { username: 'u3333', profile_pic: 'abcde' } } })
+    expect(resp.body.token !== undefined).toBe(true)
   })
 })
 

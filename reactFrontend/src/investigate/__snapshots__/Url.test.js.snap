@@ -6,7 +6,7 @@ exports[`matches snapshot 1`] = `
     class="Url"
   >
     <div
-      class="card"
+      class="formCard card"
     >
       <div
         class="card-body"
