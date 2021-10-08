@@ -5,13 +5,13 @@
   "properties": {
     "username": {
       "type": "string",
-      "minLength": 5,
-      "maxLength": 20
+      "minLength": 1,
+      "maxLength": 15
     },
     "profile_pic": {
       "type": "string",
-      "minLength": 5,
-      "maxLength": 60
+      "minLength": 0,
+      "maxLength": 100
     }
   },
   "additionalProperties": false,

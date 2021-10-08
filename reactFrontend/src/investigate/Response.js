@@ -41,7 +41,7 @@ export default function Response({data, open}) {
     }
   }
 
-  if (!data.valid) return <p>For best results, enter a valid email</p>
+  if (!data.success) return <p>For best results, enter a valid email</p>
   return (
     <Card className="Response responseCard">
       <CardBody>

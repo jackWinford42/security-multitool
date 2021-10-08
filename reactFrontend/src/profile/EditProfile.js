@@ -1,27 +1,26 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import RamtApi from "../common/Api";
-import { Card, CardBody} from 'reactstrap';
+import { useSelector } from "react-redux";
+import { Alert, Card, CardBody} from 'reactstrap';
 import { useHistory } from "react-router-dom";
 
-export default function EditProfile() {
-  const [formData, setFormData] = useState({
-    username: "",
-    profile_pic: ""
-  });
-  const dispatch = useDispatch();
+export default function EditProfile({edit}) {
   const user = useSelector(st => st.currUser);
-  console.log(user)
+  const [formData, setFormData] = useState({
+    username: user.username,
+    profile_pic: user.profile_pic
+  });
+  const [error, setError] = useState("");
+
   const history = useHistory();
 
   async function handleSubmit(evt) {
     evt.preventDefault();
-    const res = await RamtApi.editCurrUser(formData)
-    console.log("CHECKPOINT")
-    console.log(res);
-    res.user.email = user.email;
-    dispatch({type: "BEGIN_AUTH_SESSION", user: res.user})
-    history.push("/profile");
+    if (!formData.username) setError("username cannot be empty")
+    else if (formData.username.length > 15) setError("username cannot be more than 15 letters long")
+    else {
+      edit(formData)
+      history.push("/profile");
+    }
   }
 
   // Update form data to reflect change in form fields
@@ -60,6 +59,7 @@ export default function EditProfile() {
                 Edit
               </button>
             </form>
+            {!!error && <Alert color="danger">{error}</Alert>}
           </CardBody>
         </Card>
       </div>

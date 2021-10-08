@@ -61,7 +61,6 @@ class RamtApi {
   }
 
   static async editCurrUser(newData) {
-    console.log(RamtApi.user.email)
     let res = await this.request(`users/${RamtApi.user.email}`, newData, "patch");
     return res;
   }

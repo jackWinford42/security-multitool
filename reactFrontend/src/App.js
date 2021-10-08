@@ -16,8 +16,10 @@ export default function App() {
     async function getUser() {
       try {
         console.log("INSIDE APP HOOK")
+        console.log(token)
+        console.log(jwt.decode(token))
         let { email } = jwt.decode(token);
-
+        console.log(email)
         if (!RamtApi.token) RamtApi.token = token;
         const userData = await RamtApi.getCurrUser(email);
         RamtApi.user = userData;
@@ -45,12 +47,23 @@ export default function App() {
   async function login(formData) {
     try {
       const returnedToken = await RamtApi.login(formData)
-      console.log(returnedToken)
       setToken(returnedToken);
       RamtApi.token = returnedToken;
       return {worked: true};
     } catch (errors) {
       console.error("There was an error while logging in", errors);
+      return {worked: false, errors};
+    }
+  }
+
+  async function edit(formData) {
+    try {
+      const returnedToken = (await RamtApi.editCurrUser(formData)).token
+      setToken(returnedToken);
+      RamtApi.token = returnedToken;
+      return {worked: true};
+    } catch (errors) {
+      console.error("There was an error while editing your profile", errors);
       return {worked: false, errors};
     }
   }
@@ -63,7 +76,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <Routes signup={signup} login={login} logout={logout}/>
+      <Routes signup={signup} login={login} logout={logout} edit={edit}/>
     </div>
   );
 }

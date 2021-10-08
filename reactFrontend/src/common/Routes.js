@@ -14,7 +14,7 @@ import Home from "../home/Home";
 /** Router servers as a router and parent function for nav and page 
  * content on each route.
  */
-export default function Routes({signup, login, logout}) {
+export default function Routes({signup, login, logout, edit}) {
   const user = useSelector(st => st.currUser);
   console.log(user)
 
@@ -32,7 +32,7 @@ export default function Routes({signup, login, logout}) {
         <Profile logout={logout}/>
       </Route>
       <Route path="/edit-profile">
-        <EditProfile/>
+        <EditProfile edit={edit}/>
       </Route>
       <Route>
         <p>Hmmm. I can't seem to find what you want.</p>

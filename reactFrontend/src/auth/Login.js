@@ -64,7 +64,7 @@ function LoginForm({ login }) {
               log in
             </Button>
           </form>
-          {errors.length ? <Alert color="danger">{errors}</Alert>:null}
+          {errors.length > 0 && <Alert color="danger">{errors}</Alert>}
         </CardBody>
       </Card>
     </div>

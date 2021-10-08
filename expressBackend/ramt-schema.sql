@@ -17,7 +17,7 @@ CREATE TABLE users (
     CHECK (position('@' IN email) > 1),
   username VARCHAR(15) NOT NULL,
   password TEXT NOT NULL,
-  profile_pic TEXT NOT NULL
+  profile_pic TEXT DEFAULT 'https://bit.ly/3mx9za2'
 );
 
 CREATE TABLE userHistory (

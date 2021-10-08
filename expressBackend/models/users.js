@@ -51,8 +51,7 @@ class User {
    *
    * Throws BadRequestError on duplicates.
    **/
-  static async register(
-    { username, password, email, profile_pic }) {
+  static async register({ username, password, email, profile_pic }) {
     const duplicateCheck = await db.query(
           `SELECT username
           FROM users
@@ -66,21 +65,35 @@ class User {
 
     const hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR);
 
-    const result = await db.query(
-          `INSERT INTO users
-          (username,
-            password,
-            email,
-            profile_pic)
-          VALUES ($1, $2, $3, $4)
-          RETURNING username, email, profile_pic`,
+    const result = (!!profile_pic) ? (
+      await db.query(
+        `INSERT INTO users
+        (username,
+          password,
+          email,
+          profile_pic)
+        VALUES ($1, $2, $3, $4)
+        RETURNING username, email, profile_pic`,
         [
           username,
           hashedPassword,
           email,
           profile_pic,
         ],
-    );
+      )) : (
+        await db.query(
+          `INSERT INTO users
+          (username,
+            password,
+            email)
+          VALUES ($1, $2, $3)
+          RETURNING username, email`,
+          [
+            username,
+            hashedPassword,
+            email,
+          ],
+      ))
 
     return result.rows[0];
   }
@@ -129,16 +142,24 @@ class User {
    * Returns updated user row 
    **/
   static async update(email, data) {
-    const userRes = await db.query(
-      `UPDATE users
-      SET username=$1, profile_pic=$2
-      WHERE email=$3
-      RETURNING username, profile_pic`,
-      [data.username, data.profile_pic, email],
-    )
+    const userRes = (data.profile_pic) ? (
+      await db.query(
+        `UPDATE users
+        SET username=$1, profile_pic=$2
+        WHERE email=$3
+        RETURNING username`,
+        [data.username, data.profile_pic, email],
+      )) :
+      (await db.query(
+        `UPDATE users
+        SET username=$1, profile_pic='https://bit.ly/3mx9za2'
+        WHERE email=$2
+        RETURNING username`,
+        [data.username, email],
+      ))
     const user = userRes.rows[0];
 
-    return {"updateData": user};
+    return {username: user.username, email: email};
   }
 }
 

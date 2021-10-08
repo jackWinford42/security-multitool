@@ -11,7 +11,6 @@ const { createToken } = require("../helpers/tokens");
 const userAuthSchema = require("../schemas/userAuth.json");
 const userRegisterSchema = require("../schemas/userRegister.json");
 const { BadRequestError } = require("../expressError");
-const { authenticateJWT } = require("../middleware/auth");
 
 /** POST /auth/token:  { username, password } => { token }
  *
@@ -62,6 +61,5 @@ router.post("/register", async function (req, res, next) {
     return next(err);
   }
 });
-
 
 module.exports = router;

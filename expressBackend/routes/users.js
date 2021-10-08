@@ -9,7 +9,7 @@ const express = require("express");
 const { BadRequestError } = require("../expressError");
 const User = require("../models/users");
 const userUpdateSchema = require("../schemas/userUpdate.json");
-
+const { createToken } = require("../helpers/tokens");
 const router = express.Router();
 
 
@@ -48,7 +48,9 @@ router.patch("/:email", sameUser, async function (req, res, next) {
       throw new BadRequestError(errs);
     }
     const user = await User.update(req.params.email, req.body);
-    return res.json({ user });
+    console.log(user)
+    const token = createToken(user);
+    return res.json({ token });
   } catch (err) {
     return next(err);
   }

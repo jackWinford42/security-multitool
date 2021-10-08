@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Card, CardBody } from 'reactstrap';
+import { Alert, Card, CardBody } from 'reactstrap';
 import RamtApi from "../common/Api";
 import Response from "./Response";
 import Button from '@mui/material/Button';
@@ -73,7 +73,7 @@ export default function Email() {
       </Card>
       {loading && <CircularProgress color="secondary" />}
       {data.message && <Response data={data} open={handleOpen}/>}
-      {!!error && error}
+      {!!error && <Alert color="danger">{error}</Alert>}
       <Dialog
         open={open}
         onClose={handleClose}
