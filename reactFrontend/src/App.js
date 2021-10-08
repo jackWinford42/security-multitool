@@ -16,10 +16,9 @@ export default function App() {
     async function getUser() {
       try {
         console.log("INSIDE APP HOOK")
-        console.log(token)
-        console.log(jwt.decode(token))
+
         let { email } = jwt.decode(token);
-        console.log(email)
+
         if (!RamtApi.token) RamtApi.token = token;
         const userData = await RamtApi.getCurrUser(email);
         RamtApi.user = userData;

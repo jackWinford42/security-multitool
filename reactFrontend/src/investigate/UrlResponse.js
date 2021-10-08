@@ -1,12 +1,12 @@
 import "./Response.css";
-import { Card, CardBody} from 'reactstrap';
+import { Alert, Card, CardBody} from 'reactstrap';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 
 export default function UrlResponse({data, open}) {
-  console.debug("RESPONSE COMPONENT")
+  //console.debug("RESPONSE COMPONENT")
   const percent = 100 - data.risk_score;
 
-  if (!data.success) return <p>For best results, enter a valid url. Also, the url you entered may be unreachable.</p>
+  if (!data.success) return <Alert className="redAlert" color="danger">For best results, enter a valid url. Also, the url you entered may be unreachable.</Alert>
   return (
     <Card className="UrlResponse responseCard">
       <CardBody>

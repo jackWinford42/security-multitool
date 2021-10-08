@@ -15,7 +15,7 @@ import './Investigate.css';
 /** Render the Url page and handle a call to the api at the investigate route
  */
 export default function Url() {
-  console.debug("URL COMPONENT")
+  //console.debug("URL COMPONENT")
   const userEmail = useSelector(st => st.currUser.email);
   const [url, setUrl] = useState("");
   const [data, setData] = useState({});
@@ -71,7 +71,7 @@ export default function Url() {
       </Card>
       {loading && <CircularProgress color="secondary" />}
       {data.message && <UrlResponse data={data} open={handleOpen}/>}
-      {!!error && <Alert color="danger">{error}</Alert>}
+      {!!error && <Alert className="redAlert" color="danger">{error}</Alert>}
       <Dialog
         open={open}
         onClose={handleClose}

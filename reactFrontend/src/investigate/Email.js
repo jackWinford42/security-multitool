@@ -15,7 +15,7 @@ import "./Investigate.css"
 /** Render the email page and handle a call to the emailrep api
  */
 export default function Email() {
-  console.debug("EMAIL COMPONENT")
+  //console.debug("EMAIL COMPONENT")
   const userEmail = useSelector(st => st.currUser.email);
   const [email, setEmail] = useState("");
   const [data, setData] = useState({});
@@ -73,7 +73,7 @@ export default function Email() {
       </Card>
       {loading && <CircularProgress color="secondary" />}
       {data.message && <Response data={data} open={handleOpen}/>}
-      {!!error && <Alert color="danger">{error}</Alert>}
+      {!!error && <Alert className="redAlert" color="danger">{error}</Alert>}
       <Dialog
         open={open}
         onClose={handleClose}

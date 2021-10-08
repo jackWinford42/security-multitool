@@ -16,7 +16,6 @@ import Home from "../home/Home";
  */
 export default function Routes({signup, login, logout, edit}) {
   const user = useSelector(st => st.currUser);
-  console.log(user)
 
   const privateRoutes = (
     <Switch>
