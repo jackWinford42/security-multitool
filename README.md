@@ -1,5 +1,8 @@
 # RAMT: Reputation Analyses Multi Tool
 
+The website is deployed at:
+http://ramt.surge.sh/
+
 RAMT is website where users can test suspicious emails and urls for reputation and analyses. When a user investigates an email or url, the website returns a reputation score as well as notes. RAMT also features a graph display of site-wide searches over various time ranges. Each user can see their history of tested items and edit their account.
 
 Email and Url reputation analysis is done with ipqualityscore.com and their API for fraud detection. Ipqualityscore analyses over one billion actions a day, making the service trustworthy and effective. The api also draws propriety data from honeypots, traps, dark web monitoring, threat network, and reports from fortune 500 companies.
@@ -30,23 +33,22 @@ foo@bar:~$ jest
 ```
 in the expressBackend/ directory.
 
-The website is deployed at:
-http://ramt.surge.sh/
+The standard flow of interaction with RAMT begins with authorization. Once authorization is passed, by logging in or signing up, the core features of the site are accessible. On the home page various reputation data from the site's history can be displayed. To investigate the reputation of an email or url there is a page for each. Finally, each user can visit their profile page to view their investigate history and edit account details.
+ 
+RAMT was creating using the following technologies:\ 
+Front End:\
+React\
+React-redux\
+Javascript\
+Css\
 
-RAMT was creating using the following technologies:  
-Front End:   
-React
-React-redux
-Javascript
-Css
+Back End:\
+Node\
+Express\
+Javascript\
+PostgreSQL\
 
-Back End:  
-Node
-Express
-Javascript
-PostgreSQL
-
-Deployed Using:
-Github
-Heroku
-Surge
+Deployed Using:\
+Github\
+Heroku\
+Surge\
