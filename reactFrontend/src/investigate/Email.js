@@ -30,6 +30,8 @@ export default function Email() {
     else {
       setError("");
       const res = (await RamtApi.investigate({type: "email", investigate: email, email: userEmail})).data
+      console.log(res);
+      if (res.status === 500) setError("That email address is invalid or does not exist.")
       setData(res);
     }
     setLoading(false);

@@ -35,20 +35,21 @@ in the expressBackend/ directory.
 
 The standard flow of interaction with RAMT begins with authorization. Once authorization is passed, by logging in or signing up, the core features of the site are accessible. On the home page various reputation data from the site's history can be displayed. To investigate the reputation of an email or url there is a page for each. Finally, each user can visit their profile page to view their investigate history and edit account details.
  
-RAMT was creating using the following technologies:\ 
+RAMT was creating using the following technologies:
+
 Front End:\
 React\
 React-redux\
 Javascript\
-Css\
+Css
 
 Back End:\
 Node\
 Express\
 Javascript\
-PostgreSQL\
+PostgreSQL
 
 Deployed Using:\
 Github\
 Heroku\
-Surge\
+Surge

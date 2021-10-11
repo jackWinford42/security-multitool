@@ -41,7 +41,7 @@ export default function Response({data, open}) {
     }
   }
 
-  if (!data.success) return <Alert className="redAlert" color="danger">For best results, enter a valid email</Alert>
+  if (!data.success || data.overall_score === 0) return <Alert className="redAlert" color="danger">For best results, enter a valid email</Alert>
   return (
     <Card className="Response responseCard">
       <CardBody>
