@@ -7,6 +7,8 @@ RAMT is website where users can test suspicious emails and urls for reputation a
 
 Email and Url reputation analysis is done with ipqualityscore.com and their API for fraud detection. Ipqualityscore analyses over one billion actions a day, making the service trustworthy and effective. The api also draws propriety data from honeypots, traps, dark web monitoring, threat network, and reports from fortune 500 companies.
 
+Chart.js is used to make the charts on the homepage animated and interactable. Also a combination of Bootstrap and Reactstrap is used for much of the styling such as Cards and Alerts. Most of all, Material.ui is used to style elements of the page such as the forms, nav bar, and buttons. The font RAMT uses is Roboto.
+
 Database Schema for RAMT:
 ![Database PNG](databaseSchema/RAMTDatabaseSchema.png?raw=true "RAMT Database Schema")
 
@@ -20,7 +22,7 @@ Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
-You will also see any lint errors in the console.
+You will also see any list errors in the console.
 
 ### `npm test`
 
